@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Abubakar - Portfolio</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Space Mono for code feel -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --bg-color: #020205;
+            --card-bg: #0d0d14;
+            --card-border: #1f1f2e;
+            --neon-cyan: #00f3ff;
+            --neon-blue: #0066ff;
+            --neon-green: #0aff60;
+            --neon-aqua: #7df9ff;
+            --text-main: #e0e0e0;
+            --text-muted: #8892b0;
+            --accent-glow: rgba(0, 243, 255, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Space Mono', 'Courier New', monospace; /* Coding vibe */
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 243, 255, 0.03) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(10, 255, 96, 0.03) 0%, transparent 20%);
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- LAYOUT UTILITIES --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--neon-blue), transparent);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            min-height: 90vh;
+            gap: 60px;
+            padding: 80px 0;
+        }
+
+        .hero-img-wrapper {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            padding: 5px; /* Gap for the gradient border */
+            background: linear-gradient(45deg, var(--neon-cyan), var(--neon-green));
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.3);
+            animation: pulse-glow 3s infinite alternate;
+        }
+
+        .hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            background-color: #000; /* Fallback */
+            border: 4px solid var(--bg-color);
+        }
+
+        @keyframes pulse-glow {
+            from { box-shadow: 0 0 20px rgba(0, 243, 255, 0.2); }
+            to { box-shadow: 0 0 40px rgba(10, 255, 96, 0.4); }
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .tagline {
+            display: inline-block;
+            padding: 5px 12px;
+            background: rgba(0, 102, 255, 0.1);
+            border: 1px solid var(--neon-blue);
+            color: var(--neon-aqua);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            line-height: 1.1;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, #fff, var(--neon-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .typewriter {
+            color: var(--neon-green);
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            border-right: 2px solid var(--neon-green);
+            white-space: nowrap;
+            overflow: hidden;
+            display: inline-block;
+            animation: blink 0.75s step-end infinite;
+        }
+
+        @keyframes blink { 50% { border-color: transparent; } }
+
+        .hero-content p {
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            font-size: 1rem;
+            max-width: 90%;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 28px;
+            border-radius: 5px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: transparent;
+            border: 1px solid var(--neon-green);
+            color: var(--neon-green);
+            box-shadow: 0 0 10px rgba(10, 255, 96, 0.1);
+        }
+
+        .btn-primary:hover {
+            background: var(--neon-green);
+            color: #000;
+            box-shadow: 0 0 25px rgba(10, 255, 96, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--neon-blue);
+            color: var(--neon-blue);
+        }
+
+        .btn-outline:hover {
+            background: rgba(0, 102, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 102, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* --- SKILLS GRID --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 80px;
+        }
+
+        .skill-card {
+            background: var(--card-bg);
+            padding: 25px;
+            border: 1px solid var(--card-border);
+            border-left: 3px solid var(--neon-blue);
+            border-radius: 0 8px 8px 0;
+            transition: 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-left-color: var(--neon-cyan);
+            box-shadow: 0 10px 30px -10px rgba(0, 243, 255, 0.1);
+        }
+
+        .skill-card h3 {
+            color: #fff;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .skill-card h3 i { color: var(--neon-cyan); }
+
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--neon-aqua);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            transition: 0.2s;
+        }
+        
+        .tag:hover {
+            background: rgba(0, 243, 255, 0.1);
+            border-color: var(--neon-cyan);
+        }
+
+        .tag.secondary {
+            color: var(--neon-green);
+            border-color: rgba(10, 255, 96, 0.2);
+        }
+        
+        .tag.secondary:hover {
+            background: rgba(10, 255, 96, 0.1);
+            border-color: var(--neon-green);
+        }
+
+        /* --- ACADEMIC SECTION --- */
+        .academic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .academic-box {
+            background: linear-gradient(180deg, rgba(10, 10, 18, 0.8), rgba(2, 2, 5, 0.8));
+            border: 1px solid var(--neon-blue);
+            padding: 30px;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .academic-box::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+        }
+
+        .science-list li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+            color: var(--text-muted);
+        }
+        
+        .science-list li::before {
+            content: "➜";
+            position: absolute;
+            left: 0;
+            color: var(--neon-green);
+            font-size: 0.8rem;
+            top: 2px;
+        }
+
+        /* --- PROJECTS --- */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 80px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 25px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .project-card:hover {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .project-header {
+            margin-bottom: 15px;
+        }
+
+        .project-title {
+            color: #fff;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .project-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            font-family: sans-serif;
+        }
+
+        .project-footer {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .project-link {
+            color: var(--neon-aqua);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .project-link:hover { text-shadow: 0 0 8px var(--neon-aqua); }
+
+        /* --- CONTACT/FOOTER --- */
+        footer {
+            border-top: 1px solid var(--card-border);
+            background: #000;
+            padding: 60px 0 30px;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 1px solid var(--card-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            transition: 0.3s;
+            background: var(--card-bg);
+        }
+
+        .social-btn:hover {
+            color: #000;
+            background: var(--neon-cyan);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 20px var(--neon-cyan);
+            transform: translateY(-3px) rotate(360deg);
+        }
+
+        .copyright {
+            color: #555;
+            font-size: 0.8rem;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero {
+                text-align: center;
+                flex-direction: column-reverse;
+                gap: 40px;
+                padding-top: 40px;
+            }
+            
+            .hero-content h1 { font-size: 2.2rem; }
+            
+            .btn-group { justify-content: center; }
+            
+            .hero-img-wrapper {
+                width: 220px;
+                height: 220px;
+            }
+            
+            .section-title { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO SECTION -->
+    <header class="container hero">
+        <div class="hero-content">
+            <h1>Muhammad Abubakar Siddique Ansari</h1>
+            
+            <!-- Javascript will type this out -->
+            <div class="typewriter" id="typewriter"></div>
+            
+            <p>
+                I don't just use tools; I build concepts and innovations. 
+                Passionate about Python, Data Analysis, and the fundamental laws of Physics.
+            </p>
+            
+            <div class="btn-group">
+                <a href="mailto:ansaricodes@gmail.com" class="btn btn-primary">
+                    <i class="fas fa-envelope" style="margin-right: 8px;"></i> Contact Me
+                </a>
+                <a href="#projects" class="btn btn-outline">
+                    View Projects
+                </a>
+                <a href="https://worldofansari.com/about/" target="_blank" class="btn btn-outline" style="border-color: var(--text-muted); color: var(--text-muted);">
+                    <i class="fas fa-certificate" style="margin-right: 8px;"></i> Certs
+                </a>
+            </div>
+        </div>
+
+        <div class="hero-img-wrapper">
+            <!-- Placeholder for your image. Replace src with actual path -->
+            <img src="img.jpg" alt="Abubakar Ansari" class="hero-img" id="profile-pic">
+        </div>
+    </header>
+
+    <!-- SKILLS SECTION -->
+    <section class="container" id="skills">
+        <h2 class="section-title"><i class="fas fa-code"></i> Technical Stack</h2>
+        <div class="skills-grid">
+            
+            <!-- Primary Skills -->
+            <div class="skill-card">
+                <h3><i class="fab fa-python"></i> Python Core</h3>
+                <div class="tag-container">
+                    <span class="tag">Problem Solving</span>
+                    <span class="tag">Numpy</span>
+                    <span class="tag">Pandas</span>
+                    <span class="tag">Scikit-learn</span>
+                    <span class="tag">Computer Vision</span>
+                    <span class="tag">CustomTkinter</span>
+                </div>
+            </div>
+
+            <!-- Web Frameworks -->
+            <div class="skill-card">
+                <h3><i class="fas fa-layer-group"></i> Web Frameworks</h3>
+                <div class="tag-container">
+                    <span class="tag">NiceGUI</span>
+                    <span class="tag">Dash</span>
+                    <span class="tag">Flask</span>
+                    <span class="tag">FastAPI</span>
+                </div>
+            </div>
+
+            <!-- Secondary Skills -->
+            <div class="skill-card" style="border-left-color: var(--neon-green);">
+                <h3 style="color: var(--neon-green);"><i class="fas fa-terminal"></i> Secondary</h3>
+                <div class="tag-container">
+                    <span class="tag secondary">PHP</span>
+                    <span class="tag secondary">JavaScript</span>
+                    <span class="tag secondary">Laravel</span>
+                    <span class="tag secondary">VueJS</span>
+                    <span class="tag secondary">Quasar</span>
+                    <span class="tag secondary">SQL</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACADEMIC INTERESTS -->
+    <section class="container">
+        <h2 class="section-title"><i class="fas fa-atom"></i> Research Areas</h2>
+        <div class="academic-grid">
+            <!-- Math -->
+            <div class="academic-box">
+                <h3 style="color: var(--neon-green); margin-bottom: 20px; font-size: 1.4rem;">
+                    Mathematics
+                </h3>
+                <ul class="science-list">
+                    <li>Proposed definition: <strong>'impowers'</strong></li>
+                    <li>Exploration of the <strong>Collatz Sequence</strong></li>
+                    <li>Deep dive into <strong>Prime Number</strong> distribution</li>
+                </ul>
+            </div>
+
+            <!-- Physics -->
+            <div class="academic-box">
+                <h3 style="color: var(--neon-cyan); margin-bottom: 20px; font-size: 1.4rem;">
+                    Theoretical Physics
+                </h3>
+                <ul class="science-list">
+                    <li>Gravity & General Relativity</li>
+                    <li>Cosmology & The Early Universe</li>
+                    <li><strong>GUT</strong> (Grand Unified Theory)</li>
+                    <li><strong>TOE</strong> (Theory of Everything) questions</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section class="container" id="projects">
+        <h2 class="section-title"><i class="fas fa-laptop-code"></i> Projects</h2>
+        <div class="project-grid">
+            
+            <div class="project-card">
+                <div>
+                    <div class="project-header">
+                        <div class="project-title">ProgressivePy</div>
+                    </div>
+                    <p class="project-desc">A custom library to create progress bars efficiently in both terminal and Jupyter environments.</p>
+                </div>
+                <div class="project-footer">
+                    <span style="color: var(--neon-green); font-size: 0.8rem;">Python Pkg</span>
+                    <a href="https://github.com/Ansari-Codes/progressive_py" target="_blank" class="project-link">GitHub <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div>
+                    <div class="project-header">
+                        <div class="project-title">TurtleGraphics</div>
+                    </div>
+                    <p class="project-desc">A live web application to create and publish turtle drawings interactively.</p>
+                </div>
+                <div class="project-footer">
+                    <span style="color: var(--neon-green); font-size: 0.8rem;">Web App</span>
+                    <a href="https://github.com/Ansari-Codes/tg" target="_blank" class="project-link">Source <i class="fas fa-arrow-right"></i></a>
+                    <a href="https://kitaaab.org" target="_blank" class="project-link">View <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div>
+                    <div class="project-header">
+                        <div class="project-title">NiceStart</div>
+                    </div>
+                    <p class="project-desc">A robust boilerplate for NiceGUI projects to accelerate development setup.</p>
+                </div>
+                <div class="project-footer">
+                    <span style="color: var(--neon-green); font-size: 0.8rem;">Boilerplate</span>
+                    <a href="https://github.com/Ansari-Codes/NiceStart" target="_blank" class="project-link">GitHub <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div>
+                    <div class="project-header">
+                        <div class="project-title">FriendsChat</div>
+                    </div>
+                    <p class="project-desc">A Chat interface built to understand real-time communication protocols.</p>
+                </div>
+                <div class="project-footer">
+                    <span style="color: var(--neon-green); font-size: 0.8rem;">Chat App</span>
+                    <a href="https://github.com/Ansari-Codes/friends" target="_blank" class="project-link">GitHub <i class="fas fa-arrow-right"></i></a>
+                    <a href="https://kitaaab.net" target="_blank" class="project-link">View <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div>
+                    <div class="project-header">
+                        <div class="project-title">WorldOfAnsari</div>
+                    </div>
+                    <p class="project-desc">My primary personal website showcasing my broader work and journey.</p>
+                </div>
+                <div class="project-footer">
+                    <span style="color: var(--neon-blue); font-size: 0.8rem;">Portfolio</span>
+                    <a href="https://worldofansari.com/" target="_blank" class="project-link">Visit <i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+
+             <div class="project-card">
+                <div>
+                    <div class="project-header">
+                        <div class="project-title">AnsariCodes</div>
+                    </div>
+                    <p class="project-desc">My centralized coding portfolio hub.</p>
+                </div>
+                <div class="project-footer">
+                    <span style="color: var(--neon-blue); font-size: 0.8rem;">Portfolio</span>
+                    <a href="https://ansaricodes.com/" target="_blank" class="project-link">Visit <i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <h2 style="color: #fff; margin-bottom: 10px;">Lets Connect</h2>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">
+                +92 336 0044774 &nbsp;|&nbsp; ansaricodes@gmail.com
+            </p>
+            
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/ansari-codes/" target="_blank" class="social-btn" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/Ansari-Codes" target="_blank" class="social-btn" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.kaggle.com/mabubakrsiddiq" target="_blank" class="social-btn" title="Kaggle"><i class="fab fa-kaggle"></i></a>
+                <a href="https://www.youtube.com/@ansaricode" target="_blank" class="social-btn" title="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.instagram.com/ansaricodes/" target="_blank" class="social-btn" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://web.facebook.com/ansaricodes/" target="_blank" class="social-btn" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            </div>
+            
+            <p class="copyright">&copy; 2024 Muhammad Abubakar Siddique Ansari. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT FOR TYPING EFFECT -->
+    <script>
+        const text = "Python Developer | Physics Enthusiast | Innovator";
+        const typeWriterElement = document.getElementById('typewriter');
+        let index = 0;
+
+        function type() {
+            if (index < text.length) {
+                typeWriterElement.textContent += text.charAt(index);
+                index++;
+                setTimeout(type, 100);
+            } else {
+                // Remove the cursor blinking animation after typing is done
+                typeWriterElement.style.borderRight = "none";
+            }
+        }
+
+        // Start typing on load
+        window.addEventListener('load', type);
+
+        // Simple smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
