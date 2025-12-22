@@ -88,6 +88,7 @@
             background: linear-gradient(45deg, var(--neon-cyan), var(--neon-green));
             box-shadow: 0 0 30px rgba(0, 243, 255, 0.3);
             animation: pulse-glow 3s infinite alternate;
+            flex-shrink: 0;
         }
 
         .hero-img {
@@ -106,6 +107,8 @@
 
         .hero-content {
             max-width: 850px;
+            flex: 1;
+            min-width: 300px; /* Ensure content doesn't squash too much */
         }
 
         .tagline {
@@ -138,6 +141,7 @@
             overflow: hidden;
             display: inline-block;
             animation: blink 0.75s step-end infinite;
+            max-width: 100%; /* Prevent overflow */
         }
 
         @keyframes blink { 50% { border-color: transparent; } }
@@ -158,11 +162,13 @@
         .btn {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             padding: 12px 28px;
             border-radius: 5px;
             font-weight: bold;
             letter-spacing: 0.5px;
             transition: all 0.3s ease;
+            text-align: center;
         }
 
         .btn-primary {
@@ -193,7 +199,8 @@
         /* --- SKILLS GRID --- */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            /* Adaptive grid: fit as many columns as possible, down to 280px wide */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
             margin-bottom: 80px;
         }
@@ -258,7 +265,7 @@
         /* --- ACADEMIC SECTION --- */
         .academic-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
             margin-bottom: 80px;
         }
@@ -298,7 +305,7 @@
         /* --- PROJECTS --- */
         .project-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 25px;
             margin-bottom: 80px;
         }
@@ -345,6 +352,8 @@
             justify-content: space-between;
             padding-top: 15px;
             border-top: 1px solid rgba(255,255,255,0.05);
+            flex-wrap: wrap; /* Allow wrapping on small screens */
+            gap: 10px;
         }
 
         .project-link {
@@ -400,25 +409,77 @@
             font-size: 0.8rem;
         }
 
-        /* --- RESPONSIVE --- */
+        /* --- RESPONSIVE MEDIA QUERIES --- */
+        
+        /* Tablets and smaller laptops */
+        @media (max-width: 992px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .hero-img-wrapper { width: 250px; height: 250px; }
+        }
+
+        /* Tablets and large phones */
         @media (max-width: 768px) {
             .hero {
                 text-align: center;
-                flex-direction: column-reverse;
+                flex-direction: column-reverse; /* Image on top logic depends on dom order */
                 gap: 40px;
                 padding-top: 40px;
+                padding-bottom: 40px;
+                min-height: auto;
             }
             
-            .hero-content h1 { font-size: 2.2rem; }
+            .hero-content {
+                max-width: 100%;
+                min-width: 0;
+            }
             
+            .hero-content h1 { font-size: 2rem; }
+            
+            .hero-content p { margin: 0 auto 30px auto; }
+
             .btn-group { justify-content: center; }
             
             .hero-img-wrapper {
                 width: 220px;
                 height: 220px;
+                margin: 0 auto;
             }
             
-            .section-title { font-size: 1.5rem; }
+            .section-title { 
+                font-size: 1.5rem;
+                /* Kept row layout for side-by-side icon/label */
+            }
+            
+            .container { padding: 20px 15px; }
+        }
+
+        /* Small Phones */
+        @media (max-width: 480px) {
+            .hero-content h1 { font-size: 1.75rem; }
+            
+            .typewriter { 
+                font-size: 0.9rem;
+                white-space: normal; /* Allow wrap on very small screens if needed */
+                border-right: none;
+                animation: none;
+            }
+            
+            .hero-img-wrapper {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .btn {
+                width: 100%; /* Full width buttons for easier tapping */
+            }
+            
+            /* Force single column for very narrow screens */
+            .skills-grid, .project-grid, .academic-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .social-links { gap: 15px; }
+            .social-btn { width: 40px; height: 40px; font-size: 1rem; }
         }
     </style>
 </head>
