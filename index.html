@@ -1,735 +1,727 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muhammad Abubakar - Portfolio</title>
-    <!-- Font Awesome for Icons -->
+    <title>Muhammad Abubakar Siddique | Python & Physics</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts: Space Mono for code feel -->
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'cosmic-bg': '#050b14',
+                        'cosmic-card': '#0f172a',
+                        'neon-blue': '#00f3ff',
+                        'neon-purple': '#bc13fe',
+                    },
+                    fontFamily: {
+                        'tech': ['Orbitron', 'sans-serif'],
+                        'body': ['Rajdhani', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        'pulse-glow': {
+                            '0%, 100%': { opacity: 1, boxShadow: '0 0 20px #00f3ff' },
+                            '50%': { opacity: .5, boxShadow: '0 0 10px #00f3ff' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        /* --- CSS VARIABLES & RESET --- */
-        :root {
-            --bg-color: #020205;
-            --card-bg: #0d0d14;
-            --card-border: #1f1f2e;
-            --neon-cyan: #00f3ff;
-            --neon-blue: #0066ff;
-            --neon-green: #0aff60;
-            --neon-aqua: #7df9ff;
-            --text-main: #e0e0e0;
-            --text-muted: #8892b0;
-            --accent-glow: rgba(0, 243, 255, 0.15);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Space Mono', 'Courier New', monospace; /* Coding vibe */
-        }
-
         body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(0, 243, 255, 0.03) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(10, 255, 96, 0.03) 0%, transparent 20%);
+            background-color: #050b14;
+            background-image: radial-gradient(circle at 50% 50%, #1a2333 0%, #050b14 100%);
+            color: #e2e8f0;
         }
 
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-        ul { list-style: none; }
-
-        /* --- LAYOUT UTILITIES --- */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            color: var(--neon-cyan);
-            text-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .section-title::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(90deg, var(--neon-blue), transparent);
-        }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-            min-height: 90vh;
-            gap: 60px;
-            padding: 80px 0;
-        }
-
-        .hero-img-wrapper {
-            position: relative;
-            width: 280px;
-            height: 280px;
-            border-radius: 50%;
-            padding: 5px; /* Gap for the gradient border */
-            background: linear-gradient(45deg, var(--neon-cyan), var(--neon-green));
-            box-shadow: 0 0 30px rgba(0, 243, 255, 0.3);
-            animation: pulse-glow 3s infinite alternate;
-            flex-shrink: 0;
-        }
-
-        .hero-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-            background-color: #000; /* Fallback */
-            border: 4px solid var(--bg-color);
-        }
-
-        @keyframes pulse-glow {
-            from { box-shadow: 0 0 20px rgba(0, 243, 255, 0.2); }
-            to { box-shadow: 0 0 40px rgba(10, 255, 96, 0.4); }
-        }
-
-        .hero-content {
-            max-width: 850px;
-            flex: 1;
-            min-width: 300px; /* Ensure content doesn't squash too much */
-        }
-
-        .tagline {
-            display: inline-block;
-            padding: 5px 12px;
-            background: rgba(0, 102, 255, 0.1);
-            border: 1px solid var(--neon-blue);
-            color: var(--neon-aqua);
-            border-radius: 20px;
-            font-size: 0.85rem;
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-
-        .hero-content h1 {
-            font-size: 3rem;
-            line-height: 1.1;
-            margin-bottom: 15px;
-            background: linear-gradient(90deg, #fff, var(--neon-cyan));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .typewriter {
-            color: var(--neon-green);
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-            border-right: 2px solid var(--neon-green);
-            white-space: nowrap;
-            overflow: hidden;
-            display: inline-block;
-            animation: blink 0.75s step-end infinite;
-            max-width: 100%; /* Prevent overflow */
-        }
-
-        @keyframes blink { 50% { border-color: transparent; } }
-
-        .hero-content p {
-            color: var(--text-muted);
-            margin-bottom: 30px;
-            font-size: 1rem;
-            max-width: 90%;
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 12px 28px;
-            border-radius: 5px;
-            font-weight: bold;
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .btn-primary {
-            background: transparent;
-            border: 1px solid var(--neon-green);
-            color: var(--neon-green);
-            box-shadow: 0 0 10px rgba(10, 255, 96, 0.1);
-        }
-
-        .btn-primary:hover {
-            background: var(--neon-green);
-            color: #000;
-            box-shadow: 0 0 25px rgba(10, 255, 96, 0.4);
-            transform: translateY(-2px);
-        }
-
-        .btn-outline {
-            border: 1px solid var(--neon-blue);
-            color: var(--neon-blue);
-        }
-
-        .btn-outline:hover {
-            background: rgba(0, 102, 255, 0.1);
-            box-shadow: 0 0 15px rgba(0, 102, 255, 0.3);
-            transform: translateY(-2px);
-        }
-
-        /* --- SKILLS GRID --- */
-        .skills-grid {
-            display: grid;
-            /* Adaptive grid: fit as many columns as possible, down to 280px wide */
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-bottom: 80px;
-        }
-
-        .skill-card {
-            background: var(--card-bg);
-            padding: 25px;
-            border: 1px solid var(--card-border);
-            border-left: 3px solid var(--neon-blue);
-            border-radius: 0 8px 8px 0;
-            transition: 0.3s;
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .skill-card:hover {
+            border-color: #00f3ff;
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
             transform: translateY(-5px);
-            border-left-color: var(--neon-cyan);
-            box-shadow: 0 10px 30px -10px rgba(0, 243, 255, 0.1);
-        }
-
-        .skill-card h3 {
-            color: #fff;
-            margin-bottom: 15px;
-            font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .skill-card h3 i { color: var(--neon-cyan); }
-
-        .tag-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .tag {
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--neon-aqua);
-            padding: 6px 12px;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            border: 1px solid rgba(0, 243, 255, 0.2);
-            transition: 0.2s;
-        }
-        
-        .tag:hover {
-            background: rgba(0, 243, 255, 0.1);
-            border-color: var(--neon-cyan);
-        }
-
-        .tag.secondary {
-            color: var(--neon-green);
-            border-color: rgba(10, 255, 96, 0.2);
-        }
-        
-        .tag.secondary:hover {
-            background: rgba(10, 255, 96, 0.1);
-            border-color: var(--neon-green);
-        }
-
-        /* --- ACADEMIC SECTION --- */
-        .academic-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-bottom: 80px;
-        }
-
-        .academic-box {
-            background: linear-gradient(180deg, rgba(10, 10, 18, 0.8), rgba(2, 2, 5, 0.8));
-            border: 1px solid var(--neon-blue);
-            padding: 30px;
-            border-radius: 12px;
-            position: relative;
-        }
-
-        .academic-box::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
-        }
-
-        .science-list li {
-            margin-bottom: 12px;
-            padding-left: 25px;
-            position: relative;
-            color: var(--text-muted);
-        }
-        
-        .science-list li::before {
-            content: "➜";
-            position: absolute;
-            left: 0;
-            color: var(--neon-green);
-            font-size: 0.8rem;
-            top: 2px;
-        }
-
-        /* --- PROJECTS --- */
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-            margin-bottom: 80px;
-        }
-
-        .project-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            padding: 25px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
         }
 
         .project-card:hover {
-            border-color: var(--neon-cyan);
-            box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
-            transform: translateY(-5px);
+            border-color: #bc13fe;
+            box-shadow: 0 0 15px rgba(188, 19, 254, 0.3);
         }
 
-        .project-header {
-            margin-bottom: 15px;
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
 
-        .project-title {
-            color: #fff;
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 5px;
+        ::-webkit-scrollbar-track {
+            background: #050b14;
         }
 
-        .project-desc {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            line-height: 1.5;
-            font-family: sans-serif;
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
         }
 
-        .project-footer {
-            margin-top: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding-top: 15px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            flex-wrap: wrap; /* Allow wrapping on small screens */
-            gap: 10px;
-        }
-
-        .project-link {
-            color: var(--neon-aqua);
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        .project-link:hover { text-shadow: 0 0 8px var(--neon-aqua); }
-
-        /* --- CONTACT/FOOTER --- */
-        footer {
-            border-top: 1px solid var(--card-border);
-            background: #000;
-            padding: 60px 0 30px;
-            text-align: center;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            flex-wrap: wrap;
-            margin: 30px 0;
-        }
-
-        .social-btn {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: 1px solid var(--card-border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-muted);
-            font-size: 1.2rem;
-            transition: 0.3s;
-            background: var(--card-bg);
-        }
-
-        .social-btn:hover {
-            color: #000;
-            background: var(--neon-cyan);
-            border-color: var(--neon-cyan);
-            box-shadow: 0 0 20px var(--neon-cyan);
-            transform: translateY(-3px) rotate(360deg);
-        }
-
-        .copyright {
-            color: #555;
-            font-size: 0.8rem;
-        }
-
-        /* --- RESPONSIVE MEDIA QUERIES --- */
-        
-        /* Tablets and smaller laptops */
-        @media (max-width: 992px) {
-            .hero-content h1 { font-size: 2.5rem; }
-            .hero-img-wrapper { width: 250px; height: 250px; }
-        }
-
-        /* Tablets and large phones */
-        @media (max-width: 768px) {
-            .hero {
-                text-align: center;
-                flex-direction: column-reverse; /* Image on top logic depends on dom order */
-                gap: 40px;
-                padding-top: 40px;
-                padding-bottom: 40px;
-                min-height: auto;
-            }
-            
-            .hero-content {
-                max-width: 100%;
-                min-width: 0;
-            }
-            
-            .hero-content h1 { font-size: 2rem; }
-            
-            .hero-content p { margin: 0 auto 30px auto; }
-
-            .btn-group { justify-content: center; }
-            
-            .hero-img-wrapper {
-                width: 220px;
-                height: 220px;
-                margin: 0 auto;
-            }
-            
-            .section-title { 
-                font-size: 1.5rem;
-                /* Kept row layout for side-by-side icon/label */
-            }
-            
-            .container { padding: 20px 15px; }
-        }
-
-        /* Small Phones */
-        @media (max-width: 480px) {
-            .hero-content h1 { font-size: 1.75rem; }
-            
-            .typewriter { 
-                font-size: 0.9rem;
-                white-space: normal; /* Allow wrap on very small screens if needed */
-                border-right: none;
-                animation: none;
-            }
-            
-            .hero-img-wrapper {
-                width: 180px;
-                height: 180px;
-            }
-            
-            .btn {
-                width: 100%; /* Full width buttons for easier tapping */
-            }
-            
-            /* Force single column for very narrow screens */
-            .skills-grid, .project-grid, .academic-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .social-links { gap: 15px; }
-            .social-btn { width: 40px; height: 40px; font-size: 1rem; }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00f3ff;
         }
     </style>
 </head>
-<body>
 
-    <!-- HERO SECTION -->
-    <header class="container hero">
-        <div class="hero-content">
-            <h1>Muhammad Abubakar Siddique Ansari</h1>
-            
-            <!-- Javascript will type this out -->
-            <div class="typewriter" id="typewriter"></div>
-            
-            <p>
-                I don't just use tools; I build concepts and innovations. 
-                Passionate about Python, Data Analysis, and the fundamental laws of Physics.
-            </p>
-            
-            <div class="btn-group">
-                <a href="mailto:ansaricodes@gmail.com" class="btn btn-primary">
-                    <i class="fas fa-envelope" style="margin-right: 8px;"></i> Contact Me
-                </a>
-                <a href="#projects" class="btn btn-outline">
-                    View Projects
-                </a>
-                <a href="https://worldofansari.com/about/" target="_blank" class="btn btn-outline" style="border-color: var(--text-muted); color: var(--text-muted);">
-                    <i class="fas fa-certificate" style="margin-right: 8px;"></i> Certs
-                </a>
+<body class="font-body text-lg overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-panel border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <span class="font-tech text-neon-blue text-xl font-bold tracking-wider">ANSARI_CODES</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home"
+                            class="hover:text-neon-blue transition-colors px-3 py-2 rounded-md font-medium">Home</a>
+                        <a href="#about"
+                            class="hover:text-neon-blue transition-colors px-3 py-2 rounded-md font-medium">About</a>
+                        <a href="#skills"
+                            class="hover:text-neon-blue transition-colors px-3 py-2 rounded-md font-medium">Skills</a>
+                        <a href="#projects"
+                            class="hover:text-neon-blue transition-colors px-3 py-2 rounded-md font-medium">Projects</a>
+                        <a href="#contact"
+                            class="bg-neon-blue text-black hover:bg-white transition-all px-4 py-2 rounded-full font-bold shadow-[0_0_15px_rgba(0,243,255,0.5)]">Connect</a>
+                    </div>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"
+                        class="text-gray-300 hover:text-white focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
             </div>
         </div>
-
-        <div class="hero-img-wrapper">
-            <!-- Placeholder for your image. Replace src with actual path -->
-            <img src="img.jpg" alt="Abubakar Ansari" class="hero-img" id="profile-pic">
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-cosmic-card border-t border-gray-800">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 hover:text-neon-blue">Home</a>
+                <a href="#about" class="block px-3 py-2 hover:text-neon-blue">About</a>
+                <a href="#skills" class="block px-3 py-2 hover:text-neon-blue">Skills</a>
+                <a href="#projects" class="block px-3 py-2 hover:text-neon-blue">Projects</a>
+                <a href="#contact" class="block px-3 py-2 text-neon-blue">Contact</a>
+            </div>
         </div>
-    </header>
+    </nav>
 
-    <!-- SKILLS SECTION -->
-    <section class="container" id="skills">
-        <h2 class="section-title"><i class="fas fa-code"></i> Technical Stack</h2>
-        <div class="skills-grid">
-            
-            <!-- Primary Skills -->
-            <div class="skill-card">
-                <h3><i class="fab fa-python"></i> Python Core</h3>
-                <div class="tag-container">
-                    <span class="tag">Problem Solving</span>
-                    <span class="tag">Numpy</span>
-                    <span class="tag">Pandas</span>
-                    <span class="tag">Scikit-learn</span>
-                    <span class="tag">Computer Vision</span>
-                    <span class="tag">CustomTkinter</span>
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center pt-16 relative overflow-hidden">
+        <!-- Background Decor -->
+        <div
+            class="absolute top-20 left-10 w-32 h-32 bg-neon-blue rounded-full filter blur-[100px] opacity-20 animate-pulse">
+        </div>
+        <div class="absolute bottom-20 right-10 w-64 h-64 bg-neon-purple rounded-full filter blur-[120px] opacity-20">
+        </div>
+
+        <div class="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 text-center md:text-left z-10">
+                <div
+                    class="inline-block px-3 py-1 mb-4 border border-neon-blue rounded-full text-neon-blue text-sm font-tech tracking-widest">
+                    PYTHON DEVELOPER
+                </div>
+                <h1 class="text-5xl md:text-7xl font-bold font-tech mb-6 leading-tight">
+                    Muhammad <br>
+                    <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-neon-purple">Abubakar</span>
+                    <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-neon-purple to-neon-blue">Siddique</span>
+                </h1>
+                <p class="text-xl text-gray-400 mb-8 max-w-lg mx-auto md:mx-0">
+                    I don't just use tools; I build concepts.
+                </p>
+                <div class="flex flex-wrap gap-4 justify-center md:justify-start">
+                    <a href="#projects"
+                        class="px-8 py-3 bg-transparent border-2 border-neon-blue text-neon-blue hover:bg-neon-blue hover:text-black font-bold rounded-lg transition-all duration-300">
+                        View Innovation
+                    </a>
+                    <a href="https://github.com/Ansari-Codes" target="_blank"
+                        class="px-8 py-3 bg-gray-800 hover:bg-gray-700 text-white font-bold rounded-lg transition-all duration-300 flex items-center gap-2">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
                 </div>
             </div>
 
-            <!-- Web Frameworks -->
-            <div class="skill-card">
-                <h3><i class="fas fa-layer-group"></i> Web Frameworks</h3>
-                <div class="tag-container">
-                    <span class="tag">NiceGUI</span>
-                    <span class="tag">Dash</span>
-                    <span class="tag">Flask</span>
-                    <span class="tag">FastAPI</span>
+            <div class="md:w-1/2 mt-12 md:mt-0 flex justify-center z-10">
+                <div class="relative w-72 h-72 md:w-96 md:h-96">
+                    <!-- Rotating rings representing atoms/orbitals -->
+                    <div
+                        class="absolute inset-0 border-2 border-neon-blue rounded-full animate-[spin_10s_linear_infinite] opacity-30">
+                    </div>
+                    <div
+                        class="absolute inset-4 border-2 border-neon-purple rounded-full animate-[spin_15s_linear_infinite_reverse] opacity-30">
+                    </div>
+
+                    <!-- Profile Image Container -->
+                    <div
+                        class="absolute inset-2 rounded-full overflow-hidden border-4 border-gray-800 shadow-[0_0_50px_rgba(0,243,255,0.2)] bg-gray-900 flex items-center justify-center">
+                        <!-- Placeholder for user image if they add one later, currently using a stylized avatar -->
+                        <img src="img.jpg" alt="Profile" class="w-full h-full object-cover">
+                    </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Secondary Skills -->
-            <div class="skill-card" style="border-left-color: var(--neon-green);">
-                <h3 style="color: var(--neon-green);"><i class="fas fa-terminal"></i> Secondary</h3>
-                <div class="tag-container">
-                    <span class="tag secondary">PHP</span>
-                    <span class="tag secondary">JavaScript</span>
-                    <span class="tag secondary">Laravel</span>
-                    <span class="tag secondary">VueJS</span>
-                    <span class="tag secondary">Quasar</span>
-                    <span class="tag secondary">SQL</span>
+    <!-- About & Experience Section -->
+    <section id="about" class="py-20 bg-black/30">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- About & Education -->
+                <div class="glass-panel p-8 rounded-2xl">
+                    <h2 class="text-3xl font-tech text-white mb-6"><i
+                            class="fas fa-user-astronaut text-neon-blue mr-3"></i>Bio & Education</h2>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        Currently studying ICS (1st Year) at KIPS College. I am deeply passionate about understanding
+                        the universe through Physics (GUT, TOE, Cosmology) and manipulating data through Python.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div
+                                class="w-12 h-12 bg-blue-900/50 rounded-lg flex items-center justify-center mr-4 text-neon-blue">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white">HND / ICS 1st Year</h4>
+                                <p class="text-sm text-gray-400">KIPS College</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience -->
+                <div class="glass-panel p-8 rounded-2xl border-l-4 border-neon-purple">
+                    <h2 class="text-3xl font-tech text-white mb-6"><i
+                            class="fas fa-briefcase text-neon-purple mr-3"></i>Experience</h2>
+                    <div class="relative border-l border-gray-700 ml-3 pl-8 space-y-8">
+                        <div class="relative">
+                            <span class="absolute -left-[41px] w-5 h-5 bg-neon-purple rounded-full"></span>
+                            <h3 class="text-xl font-bold text-white">Internship</h3>
+                            <p class="text-neon-purple text-sm mb-2">NBTHub</p>
+                            <p class="text-gray-400">Gained practical industry experience in software development and
+                                tech workflows.</p>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-[41px] w-5 h-5 bg-blue-500 rounded-full"></span>
+                            <h3 class="text-xl font-bold text-white">Python Instructor</h3>
+                            <p class="text-blue-400 text-sm mb-2">3-Month Course</p>
+                            <p class="text-gray-400">Taught core programming concepts, logic building, and Python syntax
+                                to students.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ACADEMIC INTERESTS -->
-    <section class="container">
-        <h2 class="section-title"><i class="fas fa-atom"></i> Research Areas</h2>
-        <div class="academic-grid">
-            <!-- Math -->
-            <div class="academic-box">
-                <h3 style="color: var(--neon-green); margin-bottom: 20px; font-size: 1.4rem;">
-                    Mathematics
-                </h3>
-                <ul class="science-list">
-                    <li>Proposed definition: <strong>'impowers'</strong></li>
-                    <li>Exploration of the <strong>Collatz Sequence</strong></li>
-                    <li>Deep dive into <strong>Prime Number</strong> distribution</li>
-                </ul>
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-tech font-bold text-white mb-4">Technical <span
+                        class="text-neon-blue">Arsenal</span></h2>
+                <p class="text-gray-400">Primary tools and technologies I use to innovate</p>
             </div>
 
-            <!-- Physics -->
-            <div class="academic-box">
-                <h3 style="color: var(--neon-cyan); margin-bottom: 20px; font-size: 1.4rem;">
-                    Theoretical Physics
-                </h3>
-                <ul class="science-list">
-                    <li>Gravity & General Relativity</li>
-                    <li>Cosmology & The Early Universe</li>
-                    <li><strong>GUT</strong> (Grand Unified Theory)</li>
-                    <li><strong>TOE</strong> (Theory of Everything) questions</li>
-                </ul>
+            <!-- Primary Tools -->
+            <h3 class="text-xl font-tech text-white mb-6 border-b border-gray-700 pb-2">Primary Stack</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 mb-12">
+                <!-- Python -->
+                <div class="skill-card glass-panel p-6 rounded-xl text-center transition-all duration-300">
+                    <i class="fab fa-python text-5xl text-yellow-400 mb-3"></i>
+                    <h4 class="font-bold">Python</h4>
+                </div>
+                <!-- Data Analysis -->
+                <div class="skill-card glass-panel p-6 rounded-xl text-center transition-all duration-300">
+                    <div class="w-full flex justify-center mb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="50" height="50"
+                            fill="currentColor" class="bg-gray-100 rounded-full p-1">
+                            <path style="-inkscape-stroke:none"
+                                d="M48.697 15.176h12.25v25.437h-12.25zm0 52.251h12.25v25.436h-12.25z" color="#000"
+                                fill="#130754" />
+                            <path style="-inkscape-stroke:none" d="M48.697 48.037h12.25v12.001h-12.25z" color="#000"
+                                fill="#ffca00" />
+                            <path style="-inkscape-stroke:none"
+                                d="M29.017 36.087h12.25v84.552h-12.25zM67.97 88.414h12.25v25.436H67.97zm0-52.297h12.25v25.437H67.97z"
+                                color="#000" fill="#130754" />
+                            <path style="-inkscape-stroke:none" d="M67.97 68.983h12.25v12.001H67.97z" color="#000"
+                                fill="#e70488" />
+                            <path style="-inkscape-stroke:none" d="M87.238 8.55h12.25v84.552h-12.25z" color="#000"
+                                fill="#130754" />
+                        </svg>
+                    </div>
+                    <h4 class="font-bold">Pandas</h4>
+                </div>
+                <div class="skill-card glass-panel p-6 rounded-xl text-center transition-all duration-300">
+                    <div class="w-full flex justify-center mb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="50" height="50"
+                            fill="currentColor">
+                            <path
+                                d="M54.32 27.164L33.304 16.559 10.226 28.071l21.594 10.84zM63.961 32.031L86 43.16 63.137 54.637 41.512 43.782zM93.398 16.715l22.645 11.355-20.254 10.168-22.082-11.141zM83.652 11.824L63.265 1.601 43.101 11.667l21.008 10.59zM67.715 99.605v27.816l24.695-12.324-.023-27.828zM92.375 77.555l-.027-27.535-24.633 12.246v27.547zM122.02 72.398v27.926l-21.066 10.508-.016-27.797zM122.02 62.633V35.266l-21.105 10.492.016 27.59z"
+                                color="#000" fill="#4cabcf" style="-inkscape-stroke:none" />
+                            <path
+                                d="M58.996 62.266l-16.629-8.367v36.14S22.019 46.756 20.14 42.865c-.242-.504-1.242-1.051-1.496-1.188-3.668-1.914-14.355-7.324-14.355-7.324v63.871l14.785 7.926V72.75s20.129 38.676 20.336 39.102c.21.422 2.219 4.492 4.383 5.926 2.87 1.906 15.195 9.316 15.195 9.316z"
+                                color="#000" fill="#4c75cf" style="-inkscape-stroke:none" />
+                        </svg>
+                    </div>
+                    <h4 class="font-bold">Numpy</h4>
+                </div>
+                <!-- FastAPI -->
+                <div class="skill-card glass-panel p-6 rounded-xl text-center transition-all duration-300">
+                    <i class="fas fa-bolt text-4xl text-teal-400 mb-3"></i>
+                    <h4 class="font-bold">FastAPI</h4>
+                </div>
+                <!-- Flask -->
+                <div class="skill-card glass-panel p-6 rounded-xl text-center transition-all duration-300">
+                    <div class="w-full flex justify-center mb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="50" height="50">
+                            <path fill="#010101"
+                                d="M44.44 100.63c-4.23-3.33-8.74-6.52-11.83-11.01-6.49-7.92-11.49-17.1-14.9-26.74-2.07-6.27-2.77-12.99-5.44-19.02-2.78-4.38.48-9.16 5.27-10.55 2.13-.41 5.89-2.43 1.36-.98-4.06 2.98-4.45-2.71-.29-3.07 2.84-.38 3.89-2.7 2.92-4.8-3.05-1.99 7.4-4.18 2.14-7.15-5.48-5.91 7.66-7.05 4.42-.33-.77 5.16 9.18-.95 6.87 5.01 2.35 2.86 8.8.65 8.63 4.67 3.42.24 4.6 3.11 7.8 3.33 3.33 1.5 9.36 2.69 10.49 6.44-3.3 2.61-10.95-5.4-11.31 1.84 1 10.69.74 21.7 4.65 31.88 1.85 6.16 6.33 11.01 10.38 15.81 3.88 4.7 9.12 8.01 14.48 10.8 4.69 2.21 9.75 3.68 14.87 4.6 2.07-1.59 5.74-7.48 8.97-5 .16 2.8-6.42 5.84-.31 5.54 3.59-1.08 6.08 2.77 9.04-.71 2.72 3.23 11.32-2.06 9.38 4.53-2.62 1.69-6.44.67-9.07 3-4.33-2.16-7.77 1.93-12.56 1.42-5.32.95-10.73 1.34-16.13 1.34-8.85-.7-17.89-.99-26.3-4.07-4.74-1.38-9.37-4.08-13.53-6.78zm7.47 3.24c4.63 2 9.16 4.11 14.23 4.75 8.05 1.12 16.37 2.84 24.45 1.27-3.66-1.65-7.44.64-11.08-1.18-4.37.94-9.06-.24-13.5-.82-5.05-2.25-10.5-3.8-15.23-6.72-5.91-2.16 3.06 2.77 4.65 3.17 3.69 2.1-4.06-1.08-5.16-1.95-3.09-1.74-3.49-1.37-.31.39.64.37 1.28.77 1.95 1.09zm-8.81-6.23c4.49 1.66-.02-3.16-2.07-2.88-.91-1.58-3.48-2.58-1.67-3.43-3.26 1.13-3.42-4.3-4.95-3.53-3.45-1.09-1.34-4.95-5.45-7.32-.37-2.5-4.08-4.66-5.26-8.43-.52-1.93-4.19-7.46-1.94-2.31 1.92 4.96 5.29 9.21 8.1 13.45 2.18 4.04 4.76 8.26 8.72 10.78 1.34 1.3 2.63 3.27 4.52 3.67zM30.17 83.45c.16-.68.82 1.46 0 0zm18.3 16.18c1-.44-1.43-.56 0 0zm2.44.89c-.25-1.23-1.11.69 0 0zm3.05 1.27c1.45-1.38-2.24-.87 0 0zm5.22 2.91c.89-1.3-2.82-.49 0 0zm-10.03-6.99c2.25-1.46-2.91-.02 0 0zm2.29 1.14c-.07-.77-.82.34 0 0zm11.43 7.13c1.84 1.16 10.73 2.54 5.16.48-.93.2-10.33-2.66-5.16-.48zM44.72 91.85c-.18-.77-2.85-.85 0 0zm5.32 3.1c1.39-.96-2.87-.74 0 0zm4.48 2.75c1.98-.75-3.23-.75 0 0zm-11.97-8.21c2.16 1.65 8.7.21 3.3-.99-2.45-1.31-7.99-2.2-4.22.79l.92.2zm15 9.16c.9-1.53-3.77-.88 0 0zm-4.56-3.63c5.27 1.49-4.43-3.34-1.3-.55l.7.32.6.23zm9.14 5.28c4.99.05-4.51-.68 0 0zm-21.5-13.7c-.19-.93-1.23.08 0 0zm29.94 18.44c.14-1.68-1.62 1.25 0 0zM49.15 91.82c-.3-.88-1.56-.04 0 0zm-8.04-5.8c2.86-.17-3.93-1.26 0 0zm-9.54-6.16c-.36-1.38-3.12-2.47 0 0zM56.6 95.74c-.52-.6-.25.13 0 0zm15.58 9.56c-.05-.91-.85.35 0 0zM55.22 94.32c.28-1.18-2.44-.36 0 0zm-11.6-7.36c2.13-.23-3.42-1.44 0 0zm19.63 12.2c3.32-1.32-3.24-.64 0 0zm-10.21-6.93c3.83.49-4.56-2.61-.84-.28l.84.28zm13.31 8.19c3.58-2.14 2.4 5.01 6.07.6 3.62-2.64-3.13 3.27 1.33.47 3.23-2.16 7.99 1.02 11 2.06 2.16-.11 4.27 1.87 6.49.67 4.27-1.15-8.36-1.71-5.05-3.75-3.91 1.14-6.8-1.36-8.72-3.86-4.39-1.01-9.46-3.25-11.65-7.14-.89-1.46 1.29.21-.77-2.18-2.64-2.35-3.96-5.02-5.73-7.88-2.12-1.13-2.37-4.46-2.58-.11.02-2.74-2.56-4.59-3.19-3.82-.01-2.64 2.76-1.32.82-3.27-.42-2.74-1.79-5.59-2.2-8.68-.64-1.49-.09-4.68-2.19-1.31-.76 3.57-.25-4.38.94-1.76 1.56-2.67-.56-2.36-.65-1.99 1.02-2.26.64-5.46-.27-4.24.54-2.39.86-8.8-.81-7.66 1.01-2.5 1.92-11.44-2.47-8.03-1.78.03-4.85.64-6.31 1.37 4.56 2.51-.46.91-2.32.51-.24 2.33-2.08 1.32-4.38 1.34 3.67.45-1.79 3.75-3.89 2.47-2.74 1.31 2.36 4.57.05 5.58.28 1.52-4.19-.55-3.84 2.96-2.65-1.12-.36 4.16.96 2.38 4.51 1.22 3.18 4.01 3.29 6.65-.74 1.54-3.63-3.62-.64-3.38-2.36-3.83-2.61-1.38-4.56.39-.45.13 4.99 2.53 1.57 3.72 3.01.47 3.1 3.1 3.71 4.76 1.81 1.88 1.44-2.08 3.6.18-1.37-2.02-7.25-5.68-2.52-4.51-.03-2.03-.86-3.67.6-3.63 1.44-2.6-1.51 6.42 1.73 3.11.9-.39 1.12-2.6 2.73.21 2.34 2.3.85 3.97-2.46 1.86.59 2.01 4.42 2.72 3.7 5.86.76 2.76 1.83 1.74 2.76 1.58.73 2.68 1.14.71 1.18-.57 3.34.72 2.56 2.69 3.6 4.07 2.3 1.04-3.29-7.04.66-2.43 4.16 3.75 1.56 5.32-2.17 4.72 2.36-.19 3.12 3.19 6.07 3.07 2.69 1.28 4.52 6.2-.12 4.15-1.61-1.45-7.31-3.24-2.65-.48 4.3 1.99 7.71 3.18 11.86 5.68 2.96 2.12 4.25 4.54 5.37 5.02-2.49 1.19-7.51-.95-3.78-1.61-2.33-.42-4.94-1.6-2.71 1.3 1.89 1.58 6.71 1.42 7.58 1.59-.73 1.61-1.99 1.74.03 1.86-2.25 1.22.72 1.41.93 2.1zm-4.6-13c-1.37-1.43-1.72-4.11-.24-1.78.75.3 2.43 4.38.24 1.78zm14.99 9.52c.85-.06.02.65 0 0zM59.59 83.91c-.06-2.17.49 1.67 0 0zM58.1 81.9c-1.73-3.32 2.17.95 0 0zM40.04 69.44c1.01-.27.5 1.73 0 0zm14.37 7.79c.62-2.33.73 1.96 0 0zm-10.15-7.06c-.71-1.29 1.5 1.21 0 0zm8.71 2.79c-1.63-3.65 1.16-2 .36.6l-.36-.6zM37.95 62.95c-.73-1.2-1.93-4.72-1.55-5.79.35 1.75 3.72 7.53 1.65 2.39-2.28-4.3 2.73 1.4 3.25 2.47.24 1.07-1.41-.29-.29 2.21-2.04-2.85-1.2 1.58-3.06-1.28zm-4.64-3.2c.19-2.79 1.06 1.91 0 0zm2.08.72c1-2.11 1.69 2.93 0 0zm-5.02-3.89c-1.73-1.72-2.98-3.3.08-1.07 1.18.05-2.62-3.6.28-1.16 3.06.56 1.51 5.01-.36 2.23zm2.64-.07c1-.99.53.98 0 0zm1.62.52c-1.52-2.85 1.85 1.2 0 0zm-3.22-3.08c-5.02-4.47 6.31 2.34.82.83l-.82-.83zm14.39 8.36c-2.18-1.3-.58-9.18.16-3.79 2.11-.68-.12 2.78 1.46 2.75-.24 2.18-.95 2.97-1.62 1.04zm5.33 3.15c.21-2.38.45 1.62 0 0zm-.93-.92c.24-1.01.03 1.2 0 0zM32.39 52.48c-3.23-4.45 9.38 4.51 2.07 1.13-.77-.21-1.69-.28-2.07-1.13zm10.26 5.43c-.31-3.75.68.62 0 0zm7.78 5c.6-2.14.05 1.41 0 0zM32.89 50.78c1.92-.41 7.95 3.37 2.41 1.08-.62-.69-1.93-.38-2.41-1.08zm16.47 8.21c.2-3.84 1.15-2.29.01.55l-.01-.55zm-15.05-9.55c.78-1.15-2.08-5.18.41-1.45 1.08.85 3.11 1.43 1.31 1.79 2.84 2.5-.68.68-1.72-.34zm14.24 8.35c.54-4.37.47 2.56 0 0zM32.68 45.41c.6-.26.32.79 0 0zm3.71 2.21c.96-2.01 1.77 2.23 0 0zm10.47 5.82c0-.77.2 1.12 0 0zm-.6-1.34c-1.45-3.59 1.35 1.9 0 0zm-.89-2.35c-.25-1.48.83 1.86 0 0zm1.45-2.36c-1-1.76 1.26-7.75 1.51-4.03-1.05 2.89-.3 4.51.43.63 1.36-3.06-.29 6.02-1.94 3.4zm1.49-8.91c.44-.53.1.65 0 0zM45.82 87.6c-.59-.52.07.33 0 0zm5.13 2.6c2.86.74 2.84-.44.26-.79-1.39-1.29-5.77-2.66-1.85-.16.27.65 1.09.63 1.59.95zm-10.14-6.74c1.57 1.18 5.93 3.32 2.24.45 1.24-1.44-2.38-2.21-1.18-3.18-3.06-1.87-2.41-1.7-.27-1.64-3.67-1.64.53-1.52.33-2.36-1.42-.28-7.03-2.5-3.73.18-3.36-1.71-.8.64-1.82.39-3.44-.94 3.06 2.62-.54 1.73 1.97 1.56 5.3 4 .83 1.65-.57.85 3.21 2.14 4.14 2.78zm5.37 3.09c6.53 2.1-3.2-2.58 0 0zm27.5 16.65c.08-1.3-.9 1.11 0 0zm2.82 1.19c1.51-1.46.06 2.33 2.5-.36.03-1.92-.07-3.06-2.8-.72-.75.42-1.09 2.19.3 1.08zM31.65 76.22c-.47-1.82-3.25-1.81 0 0zm3.01 1.98c-1.12-1.86-4-1.68 0 0zm17.17 10.35c1.68 1.49 7.7 1.09 2.03.18-.83-1.24-5.32-.94-2.03-.18zm23.6 14.57c2.57-2.16-2.5.97 0 0zm5.36 3.69c.02-.69-1.11.3 0 0zm.01-.97c2.86-3.03-2.77.18 0 0zM24.22 70.01c-2.43-3.47-1.51-5.03-3.86-7.87-.45-2.17-4.03-7.09-1.85-1.88 1.99 3.05 2.58 7.77 5.71 9.75zm55.68 34.87c5.26-3.4-2.15-1.48 0 0zm4.01 1.57c2.64-2.26-1.66-.47 0 0zM30.75 72.38c.76-1.12-1.94-.14 0 0zm52.33 32.99c2.55-1.64-.59-1.39-.46.15l.46-.15zM48.5 83.58c-.09-1.11-1.35.09 0 0zm2.14 1.23c-.69-1.38-1.05.21 0 0zm36.53 21.67c3.27-2.36-1.98-.45-.68.45l.68-.45zm-1.26-.6c2.67-2.23-2.8.99 0 0zm6.39 4.25c1.79-1.19-2.17-.38 0 0zM32.39 71.57c2.39.54 9.56 5.89 5.33.37-2.17-.64-.87-5.94-3.08-5 1.48 2.48 1.22 3.53-1.9 1.97-3.91-1.91-2.2.94-1.43 1.73-1.04.25 1.39.91 1.08.93zm-10.9-8.61c.43-1.77-3.95-9.75-2.07-4 .68 1.21.61 3.49 2.07 4zM41.5 75.3c-1.23-1.03-.06-.15 0 0zm3.03.71c0-1.88-3.35-.77 0 0zm26.3 16.57c-.5-1.28-1.98-.02 0 0zm1.26.93c-.18-.72-.72.14 0 0zm10.43 6.56c1-.74-1.25-.09 0 0zM26.93 64.35c2.87-1.11-3.07-.79 0 0zm41.59 26.2c-.04-1.86-1.83.46 0 0zM25.8 61.71c1.84-.62-1.71-.41 0 0zm5.34 2.59c-.03-.61-.56.23 0 0zm65.22 39.99c2.37-.48 7.77 1.21 8.64-.63-2.88-.07-9.95-2.03-10.28.46l.63.1 1.01.07zM32.84 64.73c.05-1.88-1.46-.07 0 0zm-14.05-9.75c-.64-3.58-2.43-.54 0 0zm3.35.84c.04-1.15-3.07-1.03 0 0zm1.91.94c-.55-.44-.43.57 0 0zm12.06 7.73c.57-.52-1.35-.38 0 0zm-13.33-9.85c-.33-2.71-3.88-.4 0 0zm-6.87-4.46c-.1-1.25-.67.47 0 0zm1.02-.77c-.17-1.48-.88.19 0 0zm5.65 3.37c2.39-.94-4.35-1.94-.49-.18l.49.18zm75.59 46.69c1.53-1.4-1.94-.43 0 0zm9.13 4.74c.61-1.81-1.54.23 0 0zM23.15 49.82c.26-1.75-1.89.35 0 0zm-8.03-5.38c-.43-2.47-.37-6.82 3.76-5.35-5.51 1.1 3.82 6.85 2.64 2.31 2.32.11 4.53-1.37 3.32.88 4.57-.5 7.73-4.46 12.14-3.91 3.44-.46 7.19-.8 10.89-2.18 3.04-.22 5.97-3.5 4.31-5.44-4.15-.35-8.5.17-13.08 1.08-5.08 1.06-9.7 3.06-14.83 3.93-5 .67 1 1.85-.43 2.11-2.61.9 3.11 1.52-.34 2.47-2.13-.41-4.35-1.14-3.44-3.38-4.79.62-9 2.61-5.21 7.48h.27zm11.54-5.88c1.12-4.14 6.01 3.4 1.84.55-.5-.38-1.32-.68-1.84-.55zm.22-2.01c1.62-1.2.86.68 0 0zm2.06.04c.15-1.9 4.71 1.01.75.68l-.75-.68zm2.81-1.14c1.03-1.2.3 1.07 0 0zm.72-.48c1.71-2.06 9.69-1.31 3.85-.2-1.56-1.18-2.76.7-3.85.2zm10.42-1.6c-.26-5.62 5.18 1.99 0 0zm2.96-.02c1.08-2.83 4.2-1.14.5-.57.08.3-.11 1.46-.5.57zM21.99 48.37c3.23-1.98-3.43-1.72 0 0zm2.39.66c1.13-1.2-2.46-.49 0 0zm-7.04-4.99c1.85-1.42-2.18-.54 0 0zm95.35 59.65c.05-1.65-1.41.74 0 0zM103 97.08c.28-1.9-1.24.16 0 0zm12.36 7.25c2.58.01 7.82-.8 2.2-.8-.88.13-5.13.11-2.2.8zM26.48 47.87c2.09-.14 3.27-2.3-.41-2.18-5.69-.59 5.02 1.95-.73 1.22-.77.51 1.09 1.1 1.14.96zm1.84.93c-.22-1.34-.65.71 0 0zm2.18-5.82c.9-1.12-1.26-.3 0 0zm-6.95-11.6c3.73-1.27 8.82-2.69 10.58.62-1.79-2.15-.72-4.28.97-1.12 2.39 3.19 3.59-1.45 2.03-2.52 1.77 2.2 3.79 3.24 1.19.14 2.83-3.4-5.66.45-7.59.41-.92.41-9.58 2.2-7.18 2.47zm2.19-4.18c2.13-1.6 7.35.96 4-1.59-.33-.3-7.35 1.93-4 1.59zm7.75.32c2.49.06-1.07-3.34 1.89-1.8-.49-1.59-3.45-1.89-4.9-2.52-.82 1.45 1.66 4.34 3.01 4.32zm-6.39-7.04c.86-1.16-1.51.6 0 0zm3.16.76c4.01-.53-1.02-1.72-.81-.04l.81.04zm-5.91-4.62c-2.82-3.69 5.31.62 2.44-3.24-2.41-1.92-4.73 2.16-2.44 3.24zm36.21 19.5c1.29-2.29-5.34-3.09-.87-.81.42.14.32.97.87.81z" />
+                        </svg>
+                    </div>
+                    <h4 class="font-bold">Flask</h4>
+                </div>
+                <!-- NiceGUI -->
+                <div class="skill-card glass-panel p-6 rounded-xl text-center transition-all duration-300">
+                    <div class="w-full flex justify-center mb-2"><img src="nicegui.ico" class=""></i></div>
+                    <h4 class="font-bold">NiceGUI</h4>
+                </div>
+                <!-- AI/OpenAI -->
+                <div class="skill-card glass-panel p-6 rounded-xl text-center transition-all duration-300">
+                    <div class="w-full flex justify-center mb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
+                            class="bi bi-openai" viewBox="0 0 16 16">
+                            <path
+                                d="M14.949 6.547a3.94 3.94 0 0 0-.348-3.273 4.11 4.11 0 0 0-4.4-1.934A4.1 4.1 0 0 0 8.423.2 4.15 4.15 0 0 0 6.305.086a4.1 4.1 0 0 0-1.891.948 4.04 4.04 0 0 0-1.158 1.753 4.1 4.1 0 0 0-1.563.679A4 4 0 0 0 .554 4.72a3.99 3.99 0 0 0 .502 4.731 3.94 3.94 0 0 0 .346 3.274 4.11 4.11 0 0 0 4.402 1.933c.382.425.852.764 1.377.995.526.231 1.095.35 1.67.346 1.78.002 3.358-1.132 3.901-2.804a4.1 4.1 0 0 0 1.563-.68 4 4 0 0 0 1.14-1.253 3.99 3.99 0 0 0-.506-4.716m-6.097 8.406a3.05 3.05 0 0 1-1.945-.694l.096-.054 3.23-1.838a.53.53 0 0 0 .265-.455v-4.49l1.366.778q.02.011.025.035v3.722c-.003 1.653-1.361 2.992-3.037 2.996m-6.53-2.75a2.95 2.95 0 0 1-.36-2.01l.095.057L5.29 12.09a.53.53 0 0 0 .527 0l3.949-2.246v1.555a.05.05 0 0 1-.022.041L6.473 13.3c-1.454.826-3.311.335-4.15-1.098m-.85-6.94A3.02 3.02 0 0 1 3.07 3.949v3.785a.51.51 0 0 0 .262.451l3.93 2.237-1.366.779a.05.05 0 0 1-.048 0L2.585 9.342a2.98 2.98 0 0 1-1.113-4.094zm11.216 2.571L8.747 5.576l1.362-.776a.05.05 0 0 1 .048 0l3.265 1.86a3 3 0 0 1 1.173 1.207 2.96 2.96 0 0 1-.27 3.2 3.05 3.05 0 0 1-1.36.997V8.279a.52.52 0 0 0-.276-.445m1.36-2.015-.097-.057-3.226-1.855a.53.53 0 0 0-.53 0L6.249 6.153V4.598a.04.04 0 0 1 .019-.04L9.533 2.7a3.07 3.07 0 0 1 3.257.139c.474.325.843.778 1.066 1.303.223.526.289 1.103.191 1.664zM5.503 8.575 4.139 7.8a.05.05 0 0 1-.026-.037V4.049c0-.57.166-1.127.476-1.607s.752-.864 1.275-1.105a3.08 3.08 0 0 1 3.234.41l-.096.054-3.23 1.838a.53.53 0 0 0-.265.455zm.742-1.577 1.758-1 1.762 1v2l-1.755 1-1.762-1z" />
+                        </svg>
+                    </div>
+                    <h4 class="font-bold">OpenAI</h4>
+                </div>
+                <!-- Git -->
+                <div class="skill-card glass-panel p-6 rounded-xl text-center transition-all duration-300">
+                    <i class="fab fa-git-alt text-5xl text-red-500 mb-3"></i>
+                    <h4 class="font-bold">Git</h4>
+                </div>
+                <!-- Plotly-->
+                <div class="skill-card glass-panel p-6 rounded-xl text-center transition-all duration-300">
+                    <div class="w-full flex justify-center mb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="50" height="50">
+                            <path fill="#3d4c73"
+                                d="M117.214 128H10.782C5.16 128 .598 123.289.598 117.482V10.518C.598 4.707 5.16 0 10.786 0h106.428c5.63 0 10.188 4.707 10.188 10.518v106.964c0 5.807-4.562 10.518-10.188 10.518" />
+                            <path fill="#7fcfbd"
+                                d="M53.475 24.783a1.43 1.43 0 0 0-1.004.553 9.948 9.948 0 0 0-.846-.043c-.173 0-.334.011-.482.035-.9-.353-1.859-.36-2.272.783-.152.458-.24.93-.256 1.412a1.91 1.91 0 0 0-.441.457c-.867 1.248-.746 3.448-.4 4.84.585 2.372 3.113 4.238 5.3 3.535.18-.032.356-.1.508-.209 1.168.221 2.442-.172 3.461-1.408 1.513-1.846 1.668-4.341.785-6.412a1.12 1.12 0 0 0-.441-.863 6.37 6.37 0 0 0-1.903-1.998c-.662-.442-1.38-.744-2.01-.682zm44.957 0a1.436 1.436 0 0 0-1.006.553 9.943 9.943 0 0 0-.846-.043c-.172 0-.334.011-.482.035-.895-.353-1.853-.36-2.266.783-.156.458-.246.93-.262 1.412-.168.129-.317.28-.437.457-.871 1.248-.746 3.448-.4 4.84.585 2.372 3.11 4.238 5.296 3.535.18-.032.358-.1.51-.209 1.168.221 2.444-.172 3.46-1.408 1.516-1.846 1.67-4.341.788-6.412a1.136 1.136 0 0 0-.445-.863 6.357 6.357 0 0 0-1.899-1.998c-.664-.442-1.382-.744-2.011-.682zm-69.332.862c-1.358-.05-2.681.467-3.498 1.75a3.76 3.76 0 0 0-.202.35 5.55 5.55 0 0 0-1.812 3.198.699.699 0 0 0-.49.674c-.04 1.445.702 2.58 1.77 3.338 1.11 1 2.765 1.401 4.378 1.45 2.388.063 4.031-1.246 4.774-2.98l.029-.034c1.268-1.67 1.415-3.99-.406-5.293a6.089 6.089 0 0 0-.313-.21 5.766 5.766 0 0 0-1.225-1.195 5.573 5.573 0 0 0-3.005-1.048zm46.296.003c-1.357-.048-2.682.468-3.5 1.75a3.23 3.23 0 0 0-.199.346 5.54 5.54 0 0 0-1.814 3.203.694.694 0 0 0-.49.674c-.045 1.445.698 2.576 1.77 3.338 1.11 1 2.765 1.401 4.374 1.445 2.388.064 4.037-1.245 4.775-2.978l.028-.035c1.272-1.67 1.421-3.985-.4-5.29-.105-.072-.207-.14-.311-.208a5.773 5.773 0 0 0-1.227-1.196 5.567 5.567 0 0 0-3.006-1.049zm-44.619 2.655a6.09 6.09 0 0 1 1.494.597c.173.225.312.466.424.723a3.16 3.16 0 0 0-1.203-.674c-.092-.204-.264-.37-.469-.41l-.06-.016a4.915 4.915 0 0 0-.186-.22zm46.297 0a6.14 6.14 0 0 1 1.492.597c.169.225.314.466.426.723a3.197 3.197 0 0 0-1.205-.674c-.092-.204-.264-.37-.473-.41l-.06-.016a3.083 3.083 0 0 0-.18-.22zm-24.285.636c.064.029.127.062.2.102.035.024.073.048.109.076.092.498.063 1.172-.338 1.393a9.813 9.813 0 0 1 .03-1.57zm44.955 0c.068.029.131.062.2.102l.113.076c.092.498.06 1.172-.342 1.393-.032-.525-.019-1.05.03-1.57zM29.59 30.141a.618.618 0 0 0 .12.076c.13.06.261.099.397.127.016.1.022.202.022.302-.225-.296-.635-.32-.936-.144l-.056-.225.453-.136zm46.297 0a.604.604 0 0 0 .119.076c.128.06.262.099.402.127.012.1.016.202.016.302-.225-.296-.635-.32-.94-.144l-.056-.225.459-.136zm-48.17.468c.012.093.027.185.05.278.037.136.077.271.126.412-.14-.153-.204-.38-.176-.69zm46.295.004c.04.233.095.461.172.686-.137-.153-.2-.377-.172-.686zm-16.967.11c.028.975-.212 1.954-.75 2.789h.004c-.333.521-.733.877-1.158 1.093.28-.433.548-.95.789-1.515.056-.117.104-.233.152-.354.177-.16.277-.402.213-.63a.07.07 0 0 1 .008-.028c.349-.26.595-.746.691-1.267l.05-.088zm44.96 0a4.913 4.913 0 0 1-.751 2.789c-.333.521-.729.877-1.154 1.093.276-.433.548-.95.785-1.515.056-.117.11-.233.158-.354.177-.16.275-.402.207-.63.004-.009.004-.02.008-.028.349-.26.599-.746.691-1.267l.057-.088zm-53.124.199c.225.822.553 1.626.89 2.332.197.522.445 1.071.766 1.473a3.267 3.267 0 0 1-.46-.354c-.747-.694-1.077-1.745-1.169-2.736a8.449 8.449 0 0 1-.027-.715zm44.959 0c.22.822.55 1.626.89 2.332.193.522.445 1.071.762 1.473a3.267 3.267 0 0 1-.46-.354c-.747-.694-1.072-1.745-1.169-2.736a7.054 7.054 0 0 1-.023-.715zm-62.23.787c.084.245.087.482.035.71l-.188-.368c.06-.113.112-.222.152-.342zm46.294.004c.085.245.09.482.037.707l-.189-.365a2.95 2.95 0 0 0 .152-.342zm-48.482 2.183c.06.073.125.141.19.21-.394.112-.808.14-1.214.076l.069-.084c.325-.02.646-.085.955-.202zm46.295 0c.06.073.121.141.19.21-.394.112-.812.14-1.214.076l.065-.086c.325-.02.65-.083.959-.2zM29.1 46.713c-1.358-.05-2.681.468-3.498 1.75a3.76 3.76 0 0 0-.202.35 5.555 5.555 0 0 0-1.812 3.2.699.699 0 0 0-.49.675c-.04 1.444.702 2.577 1.77 3.335 1.11 1.004 2.765 1.404 4.378 1.448 2.388.06 4.031-1.243 4.774-2.977l.029-.037c1.268-1.673 1.415-3.989-.406-5.293-.105-.068-.205-.135-.313-.203a5.793 5.793 0 0 0-1.225-1.201 5.588 5.588 0 0 0-3.005-1.047zm46.296 0c-1.357-.05-2.682.468-3.5 1.75-.072.112-.139.23-.199.35a5.536 5.536 0 0 0-1.814 3.2.694.694 0 0 0-.49.675c-.045 1.444.698 2.577 1.77 3.335 1.11 1.004 2.765 1.404 4.374 1.448 2.388.06 4.037-1.243 4.775-2.977l.028-.037c1.272-1.673 1.421-3.989-.4-5.293l-.311-.203a5.899 5.899 0 0 0-1.227-1.201 5.582 5.582 0 0 0-3.006-1.047zm-44.619 2.652a6.423 6.423 0 0 1 1.494.598c.173.225.312.47.424.726a3.168 3.168 0 0 0-1.203-.677c-.092-.2-.264-.37-.469-.41l-.06-.012a5.01 5.01 0 0 0-.186-.225zm46.297 0a6.479 6.479 0 0 1 1.492.598c.169.225.314.47.426.726a3.206 3.206 0 0 0-1.205-.677c-.092-.2-.264-.37-.473-.41l-.06-.012a3.146 3.146 0 0 0-.18-.225zM29.59 51.203a.619.619 0 0 0 .12.076c.13.06.261.105.397.133.016.1.022.197.022.297-.225-.297-.635-.317-.936-.145l-.056-.22.453-.14zm46.297 0a.604.604 0 0 0 .119.076c.128.06.262.105.402.133.012.1.016.197.016.297-.225-.297-.635-.317-.94-.145l-.056-.22.459-.14zm-48.17.473c.032.237.091.47.176.691-.14-.152-.204-.382-.176-.691zm46.295 0c.028.237.087.47.172.691-.137-.152-.2-.382-.172-.691zm-42.403 1.1c.085.244.088.482.036.71-.06-.124-.124-.244-.188-.369.06-.108.112-.221.152-.342zm46.295 0c.085.244.088.482.035.71-.064-.124-.127-.244-.187-.369.06-.108.112-.221.152-.342zm-48.482 2.187c.06.068.125.14.19.209a2.944 2.944 0 0 1-1.214.072l.069-.08v-.004c.325-.02.646-.085.955-.197zm46.295 0c.06.068.121.14.19.209a2.952 2.952 0 0 1-1.214.072l.065-.08v-.004c.325-.02.65-.085.959-.197z" />
+                            <path fill="#fff"
+                                d="M30.248 69.036c-3.105 0-5.622 2.56-5.622 5.722v22.873c0 3.162 2.517 5.718 5.622 5.718 3.106 0 5.622-2.556 5.622-5.718V74.758c0-3.158-2.516-5.718-5.622-5.718m44.972-.004c-3.106 0-5.618 2.56-5.618 5.722v22.873c0 3.162 2.512 5.718 5.618 5.718 3.102 0 5.622-2.556 5.622-5.718V74.758c0-3.158-2.52-5.718-5.622-5.718M52.736 46.163c-3.106 0-5.622 2.56-5.622 5.714v45.754c0 3.162 2.516 5.718 5.622 5.718s5.618-2.556 5.618-5.718V51.877c0-3.158-2.512-5.718-5.618-5.718m44.971.004c-3.105 0-5.621 2.56-5.621 5.714v45.754c0 3.162 2.516 5.718 5.621 5.718 3.102 0 5.622-2.556 5.622-5.718V51.877c0-3.158-2.52-5.718-5.622-5.718" />
+                        </svg>
+                    </div>
+                    <h4 class="font-bold">Plotly &amp; Dash</h4>
+                </div>
+                <!-- Customtkinter-->
+                <div class="skill-card glass-panel p-6 rounded-xl text-center transition-all duration-300">
+                    <div class="w-full flex justify-center mb-2">
+                        <img width="45px"
+                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAWlBMVEVHcEwAke8Al/gBmfkCnP8Cnv8BmfoChtwAYa8ATpAAVJkAWaEAVpsAl/cDo/8CecoAVZ0AXKYAWqMAdsgAX6wAYrEAmPkAeMUAQ4EBm/4Go/8ATI0En/8EfcxVn8g+AAAAHXRSTlMAG5DW///////925cZn//////U////dgo1dkFo6T74T/gAAADGSURBVHgB7ZNVFoQwEASHJYYzuN7/mGjyYPADbP12oemGGetnM76DCakc1/NBEzDGGYWHUYzorblNM2PgRKKvvzRSzLL5Hha7EaI4Uwp9+N0IYYaTkHlg39xAxouQgGAbYiNd8lzhTihKMFTulGcqJ4IFe1ycciLUQKhQ5VQogXIUOPyFTwJraN6ehI7kfkwPazG2e5StQ49bs+2Ci94U5q5yoancfWmVLq0lXmr/MhwyPSogZpjo8YqLaaZmvHr+giIzM/8R+7QYqU9I3L4AAAAASUVORK5CYII=" />
+                    </div>
+                    <h4 class="font-bold">CustomTkinter</h4>
+                </div>
+                <!-- OpenCV-->
+                <div class="skill-card glass-panel p-6 rounded-xl text-center transition-all duration-300">
+                    <div class="w-full flex justify-center mb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="50" height="50">
+                            <path
+                                d="M112.871 66.602c9.004 5.277 15.055 15.027 15.074 26.191.032 16.805-13.617 30.453-30.48 30.48-16.863.032-30.559-13.57-30.59-30.375-.02-11.164 5.996-20.933 14.984-26.246l8.774 14.778c.219.37.094.847-.262 1.09-3.32 2.25-5.496 6.046-5.488 10.347.012 6.895 5.633 12.477 12.55 12.461 6.919-.012 12.516-5.61 12.504-12.504-.007-4.3-2.195-8.09-5.523-10.328-.355-.242-.484-.719-.266-1.09zm0 0"
+                                fill="#128dff" />
+                            <path
+                                d="M45.477 66.422a30.495 30.495 0 00-14.907-3.867C13.703 62.555.035 76.18.035 92.985c0 16.804 13.668 30.43 30.535 30.43 16.946 0 30.95-14.337 30.524-31.212H43.906c-.453 0-.808.383-.812.832-.043 6.723-5.672 12.434-12.524 12.434-6.922 0-12.527-5.59-12.527-12.485 0-6.894 5.605-12.484 12.527-12.484 1.809 0 3.532.383 5.086 1.074.383.168.836.04 1.047-.316zm0 0"
+                                fill="#8bda67" />
+                            <path
+                                d="M47.945 61.648c-8.992-5.293-15.027-15.054-15.027-26.218C32.918 18.625 46.59 5 63.453 5s30.535 13.625 30.535 30.43c0 11.164-6.035 20.925-15.027 26.218L70.21 46.86c-.219-.37-.094-.847.266-1.09 3.32-2.246 5.503-6.039 5.503-10.34 0-6.894-5.609-12.484-12.527-12.484-6.918 0-12.527 5.59-12.527 12.485 0 4.3 2.183 8.093 5.504 10.34.36.242.484.718.265 1.09zm0 0"
+                                fill="#ff2a44" />
+                        </svg>
+                    </div>
+                    <h4 class="font-bold">OpenCV</h4>
+                </div>
+                <!-- SKlearn-->
+                <div class="skill-card glass-panel p-6 rounded-xl text-center transition-all duration-300">
+                    <div class="w-full flex justify-center mb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="50" height="50">
+                            <path fill="#f89939"
+                                d="M98.18 88.13c15.63-15.62 18.23-38.36 5.8-50.78-12.43-12.42-35.17-9.82-50.8 5.8-15.63 15.62-11.11 45.48-5.8 50.78 4.29 4.29 35.17 9.82 50.8-5.8Z" />
+                            <path fill="#3499cd"
+                                d="M34.04 65.56c-9.07-9.06-22.27-10.57-29.48-3.37-7.21 7.21-5.7 20.4 3.37 29.46 9.07 9.07 26.4 6.44 29.48 3.37 2.49-2.49 5.71-20.4-3.37-29.46Z" />
+                            <path fill="#010101"
+                                d="M123.82 85.68c-.58 0-.87-.35-.87-1.06 0-.53.35-1.69 1.04-3.46 1.01-2.59 1.52-4.45 1.52-5.58 0-.68-.2-1.25-.6-1.7-.4-.45-.9-.68-1.5-.68-.88 0-1.89.41-3.03 1.24-1.14.83-2.67 2.32-4.6 4.48.28-1.4.88-3.32 1.78-5.76l-4.31.83c-.98 2.12-1.69 4.03-2.13 5.73-.22.83-.38 1.69-.49 2.56-1.35 1.31-2.23 2.1-2.61 2.39-.39.29-.8.43-1.22.43-.39 0-.7-.15-.93-.44-.23-.29-.34-.69-.34-1.18 0-.53.1-1.14.3-1.83s.64-1.99 1.33-3.9l1.64-4.52-1.61.07c-1.46 2.78-3.17 4.28-5.13 4.49.53-1.38.8-2.44.8-3.18 0-.94-.46-1.41-1.38-1.41-1.09 0-1.94.51-2.55 1.54-.62 1.03-.93 2-.93 2.91s.51 1.55 1.52 2c-.66.97-1.4 1.88-2.2 2.74-.95.94-1.69 1.66-2.23 2.13-.55.49-1.06.73-1.52.73-.72 0-1.08-.51-1.08-1.52s.4-2.75 1.2-5.35l1.56-5.18h-.99l-3.61 2c-.59-1.35-1.62-2.03-3.09-2.03-1.17 0-2.51.5-4.03 1.49-1.52.99-2.77 2.28-3.74 3.89-.75 1.24-1.21 2.54-1.38 3.88-1.36 1.36-2.38 2.24-3.06 2.65-.71.42-1.45.63-2.23.63-1.99 0-3.22-1.15-3.69-3.45 5.19-1.52 7.78-3.5 7.78-5.94 0-.92-.33-1.66-.99-2.23-.66-.57-1.54-.85-2.63-.85-2.11 0-4.03 1.01-5.76 3.03-1.57 1.83-2.42 3.86-2.57 6.09-1.43 1.41-2.51 2.34-3.21 2.79-.72.46-1.4.69-2.03.69s-1.13-.3-1.5-.9c-.38-.6-.57-1.41-.57-2.44 0-.46.05-1.3.14-2.53 2.36-2.56 4.09-4.96 5.2-7.21 1.11-2.25 1.66-4.58 1.66-6.98 0-.85-.11-1.52-.33-2.02-.22-.5-.5-.75-.84-.75-.07 0-.18.02-.32.07l-4.49 1.66c-1.53 2.92-2.84 6.11-3.91 9.58-1.07 3.46-1.61 6.43-1.61 8.9 0 1.65.38 2.96 1.16 3.94.77.98 1.79 1.47 3.05 1.47 1.1 0 2.25-.35 3.46-1.05 1.21-.7 2.61-1.79 4.22-3.26s0-.02 0-.02c.19 1.11.65 2.04 1.37 2.8.99 1.02 2.28 1.54 3.88 1.54 1.44 0 2.75-.35 3.94-1.05 1.15-.67 2.44-1.72 3.88-3.11.12 1.04.46 1.94 1.03 2.71.73.97 1.61 1.46 2.64 1.46s2.09-.4 3.09-1.2c1-.8 2.08-2.05 3.26-3.73-.11 3.29.77 4.93 2.63 4.93.74 0 1.52-.27 2.33-.81s2.16-1.71 4.05-3.5c1.64-1.62 2.84-3.14 3.61-4.56 1.04-.18 1.99-.49 2.86-.94-1.78 2.79-2.67 5.02-2.67 6.68 0 .9.25 1.65.74 2.25.49.6 1.1.91 1.82.91 1.57 0 3.8-1.41 6.68-4.2 0 .22-.02.43-.02.65 0 .78.07 1.96.19 3.55l3.91-.92c0-1.06.02-1.9.05-2.53.06-.84.18-1.76.35-2.76.11-.59.38-1.15.81-1.68l.99-1.15c.36-.42.71-.8 1.02-1.13.37-.39.7-.72.99-.99.33-.29.62-.53.87-.69.27-.16.49-.25.65-.25.29 0 .44.19.44.57s-.28 1.26-.83 2.65c-1.04 2.59-1.56 4.52-1.56 5.78 0 .93.24 1.67.73 2.23.48.55 1.12.83 1.91.83 1.94 0 4.28-1.44 7-4.31V82.3c-1.93 2.27-3.32 3.41-4.18 3.41Zm-65.26-8.29c.8-3.91 1.62-6.94 2.45-9.11.83-2.17 1.47-3.26 1.9-3.26.2 0 .37.13.5.4.13.26.19.62.19 1.05 0 1.49-.46 3.26-1.4 5.33-.93 2.06-2.15 3.93-3.64 5.59Zm11.79-.98c.71-1.19 1.45-1.78 2.23-1.78.82 0 1.24.57 1.24 1.7 0 2.29-1.51 3.85-4.53 4.7 0-1.9.35-3.44 1.06-4.62Zm17.48 5.85c-1.04 2.01-2.16 3.01-3.33 3.01-.48 0-.88-.2-1.19-.59-.31-.39-.47-.91-.47-1.55 0-1.68.53-3.53 1.58-5.53 1.05-2 2.17-3 3.35-3 .49 0 .89.18 1.18.56.29.37.44.89.44 1.55 0 1.7-.52 3.55-1.56 5.56Z" />
+                            <path fill="#fff"
+                                d="M75.46 64.88c.15.21.22.48.22.8s-.09.61-.27.88-.44.49-.79.64c-.34.15-.73.23-1.16.23-.72 0-1.26-.15-1.64-.45s-.62-.74-.72-1.33l.93-.15c.05.37.2.66.43.85.24.2.57.3 1 .3s.75-.09.96-.26c.21-.17.31-.38.31-.62 0-.21-.09-.38-.28-.5-.13-.08-.45-.19-.96-.32-.69-.17-1.16-.32-1.43-.45s-.47-.3-.6-.53-.21-.47-.21-.74c0-.25.06-.47.17-.68.11-.21.27-.38.46-.52.15-.11.34-.2.59-.27.25-.07.52-.11.81-.11.43 0 .81.06 1.14.19.33.12.57.29.73.51.16.21.26.5.32.86l-.92.12c-.04-.28-.16-.51-.36-.67-.2-.16-.48-.24-.85-.24-.43 0-.74.07-.92.21-.18.14-.28.31-.28.5 0 .12.04.23.11.33.08.1.2.18.36.25.09.03.37.11.83.24.66.18 1.12.32 1.39.43.26.11.47.28.62.49Zm4.47 1.44c-.25.23-.55.34-.92.34-.46 0-.83-.17-1.11-.5s-.43-.88-.43-1.62.15-1.27.44-1.6.68-.51 1.15-.51c.31 0 .58.09.8.28.22.19.37.47.46.84l.91-.14c-.11-.56-.35-.99-.73-1.29-.38-.3-.87-.45-1.47-.45-.48 0-.91.11-1.32.34-.4.22-.71.56-.9 1.01-.2.45-.3.97-.3 1.57 0 .92.23 1.63.69 2.12.46.49 1.07.74 1.82.74.6 0 1.11-.18 1.53-.54.41-.36.67-.86.77-1.49l-.92-.12c-.07.47-.22.81-.47 1.04Zm2.19.98h.94v-5.52h-.94v5.52Zm0-6.55h.94v-1.08h-.94v1.08Zm6.73 1.02h-1.21l-2.22 2.25v-4.35h-.94v7.62h.94V65.1l.66-.63 1.83 2.82h1.16l-2.33-3.47 2.11-2.05Zm.96-1.02h.94v-1.08h-.94v1.08Zm0 6.55h.94v-5.52h-.94v5.52Zm4.41-.84c-.17.02-.31.04-.41.04-.14 0-.25-.02-.32-.07s-.13-.11-.16-.18c-.03-.08-.05-.25-.05-.51v-3.23h.94v-.73h-.94v-1.93l-.93.56v1.37h-.69v.73h.69v3.18c0 .56.04.93.11 1.1.08.18.21.32.39.42.19.11.45.16.79.16.21 0 .44-.03.71-.08l-.14-.83Z" />
+                        </svg>
+                    </div>
+                    <h4 class="font-bold">ScikitLearn</h4>
+                </div>
+                <div class="skill-card glass-panel p-6 rounded-xl text-center transition-all duration-300">
+                    <div class="w-full flex justify-center mb-1">
+                        <img src="excel.svg">
+                    </div>
+                    <h4 class="font-bold">Excel</h4>
+                </div>
+                <!-- Canva-->
+                <div class="skill-card glass-panel p-6 rounded-xl text-center transition-all duration-300">
+                    <div class="w-full flex justify-center mb-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="60" height="60">
+                            <g fill="#00c4cc">
+                                <path
+                                    d="M59.39.152c-.484.051-1.995.23-3.328.387-5.374.613-11.468 2.227-16.816 4.48C19.891 13.106 5.324 30.849 1.305 51.2.359 56.04.129 58.418.129 64c0 7.195.715 12.16 2.61 18.434 6.195 20.53 22.323 36.632 42.906 42.851 6.195 1.871 11.187 2.586 18.355 2.586 7.195 0 12.16-.715 18.434-2.61 20.53-6.195 36.632-22.323 42.851-42.906 1.871-6.195 2.586-11.187 2.586-18.355 0-3.047-.152-6.527-.332-7.809-2.074-14.796-8.168-27.238-18.328-37.402C99.07 8.703 86.68 2.586 72.19.512c-1.996-.282-11.238-.54-12.8-.36zm-20.863 40.32c1.36.41 1.996.794 2.918 1.715 1.793 1.82 2.203 2.817 2.203 5.555 0 2.051-.078 2.434-.691 3.508-1.18 1.996-3.918 3.84-5.812 3.89-1.333.028-1.278-.562.18-2.097 1.945-2.023 2.226-2.79 2.226-5.813-.024-2.917-.383-3.914-1.739-4.734-1.128-.691-2.355-.64-4.148.203-4.66 2.23-9.703 9.653-11.672 17.258-2.613 10.137 2.02 18.25 9.649 16.867 2.226-.41 6.425-2.558 8.246-4.25 1.508-1.379 1.508-1.406 1.66-3.12.336-3.587 2.867-7.169 6.25-8.833 1.558-.77 1.945-.844 4.043-.844 1.996 0 2.457.102 3.43.637 3.097 1.77 2.457 5.89-.895 5.89-1.945 0-2.945-1-1.535-1.534 1.383-.512.867-2.434-.742-2.868-1.895-.488-4.047.793-5.403 3.25-1.64 2.97-1.715 6.504-.156 8.114 1.512 1.613 3.406.336 4.867-3.329.766-1.867 1.867-2.867 3.149-2.867 1.125 0 1.332.692.843 2.793-.718 3.25-.23 4.094 1.793 3.098.664-.309 1.766-1.023 2.43-1.535l1.254-1 .848-4.43c.922-4.965 1.277-5.633 3.172-5.988 1.82-.336 2.23.562 1.562 3.402l-.36 1.59 1.333-1.36c3.148-3.226 7.015-4.812 8.347-3.48.715.715.637 1.613-.386 4.785-.485 1.512-1.153 3.895-1.457 5.25-.461 2.047-.489 2.535-.23 2.868.82.972 3.327-.028 5.554-2.204l1.305-1.277.156-2.844c.152-3.277.457-4.453 1.328-5.504.82-.972 2.305-1.687 3.098-1.484.793.207.793.973.078 3.227-1 3.097-.895 10.238.129 10.238.41 0 2.507-2.2 3.84-4.043l.996-1.36-.793-.816c-1.383-1.46-1.715-2.406-1.715-4.789 0-1.738.129-2.379.562-3.227.719-1.328 1.844-2.3 3.176-2.687 1.406-.434 3.148.281 3.863 1.562.719 1.305.54 4.223-.383 6.223l-.664 1.457h.895c1.23 0 1.715-.305 3.918-2.379 1.152-1.101 2.484-2.05 3.48-2.511 3.918-1.84 8.528-.895 9.293 1.921.64 2.254-.765 3.84-3.226 3.66-1.766-.128-2.098-.59-1.074-1.456 1.843-1.54 0-3.508-2.637-2.793-1.434.386-3.047 1.996-3.89 3.867-1.692 3.738-.794 8.14 1.636 8.14.973 0 2.691-1.921 3.355-3.789.793-2.152 2.457-3.507 3.711-3.02.692.255.743.946.309 3.122-.488 2.383-.563 4.61-.18 5.633.153.382.614 1.101 1.051 1.586.816.921.844 1.254.152 1.691-.332.23-.77.129-1.843-.46-1.485-.77-2.766-2.153-3.227-3.458l-.281-.766-1.024.766c-.59.41-1.511.871-2.047 1.023-2.125.563-4.738-.894-5.964-3.351-.489-.95-.641-3.738-.282-4.813.204-.59.204-.59-.617-.18-.433.231-1.355.485-2.07.563-1.18.13-1.36.258-2.535 1.742-1.664 2.07-4.61 4.864-5.813 5.454-2.558 1.277-3.402.918-4.07-1.72l-.461-1.765-1.102.973c-1.406 1.23-4.222 2.715-5.836 3.074-1.535.332-3.175-.156-3.84-1.18-.995-1.535-.663-4.785.922-9.164 1.176-3.25.333-3.3-2.636-.203-2.203 2.328-3.149 3.992-3.762 6.578-.64 2.688-1.41 3.66-3.148 4.07-1.051.231-1.54-.41-1.332-1.816l.152-1.129-.973.668c-1.383.946-3.125 1.817-4.328 2.149-1.203.332-2.789-.024-3.172-.692-.691-1.175-.691-1.175-1.765-.332-2.332 1.895-5.66 1.356-7.348-1.152l-.54-.793-1.687 1.562c-4.867 4.454-10.957 6.45-15.464 5.067-5.735-1.738-8.907-6.656-8.856-13.746.024-7.117 3.172-14.617 8.473-20.172 2.996-3.125 5.812-4.969 8.68-5.66 2.07-.512 3.328-.485 5.296.129zm0 0" />
+                                <path
+                                    d="M90.418 58.676c-.563.562-.356 2.816.36 4.25.359.742.742 1.332.87 1.332.102 0 .332-.59.512-1.309.64-2.66-.512-5.504-1.742-4.273zm0 0" />
+                            </g>
+                        </svg>
+                    </div>
+                    <h4 class="font-bold">Canva</h4>
+                </div>
+                <!-- JSON -->
+                <div class="skill-card glass-panel p-6 rounded-xl text-center transition-all duration-300">
+                    <div class="w-full flex justify-center mb-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="60" height="60">
+                            <linearGradient id="a" x1="-670.564" x2="-583.105" y1="-280.831" y2="-368.306"
+                                gradientTransform="matrix(.9988 0 0 -.9987 689.011 -259.008)"
+                                gradientUnits="userSpaceOnUse">
+                                <stop offset="0" />
+                                <stop offset="1" stop-color="#fff" />
+                            </linearGradient>
+                            <path fill="url(#a)" fill-rule="evenodd"
+                                d="M63.895 94.303c27.433 37.398 54.281-10.438 54.241-39.205-.046-34.012-34.518-53.021-54.263-53.021C32.182 2.077 2 28.269 2 64.105 2 103.937 36.596 126 63.873 126c-6.172-.889-26.742-5.296-27.019-52.674-.186-32.044 10.453-44.846 26.974-39.214.37.137 18.223 7.18 18.223 30.187 0 22.908-18.156 30.004-18.156 30.004z"
+                                clip-rule="evenodd" />
+                            <linearGradient id="b" x1="-579.148" x2="-666.607" y1="-364.34" y2="-276.873"
+                                gradientTransform="matrix(.9988 0 0 -.9987 689.011 -259.008)"
+                                gradientUnits="userSpaceOnUse">
+                                <stop offset="0" />
+                                <stop offset="1" stop-color="#fff" />
+                            </linearGradient>
+                            <path fill="url(#b)" fill-rule="evenodd"
+                                d="M63.863 34.086C45.736 27.838 23.53 42.778 23.53 72.703 23.53 121.565 59.739 126 64.128 126 95.818 126 126 99.808 126 63.972 126 24.14 91.404 2.077 64.127 2.077c7.555-1.046 40.719 8.176 40.719 53.504 0 29.559-24.764 45.651-40.87 38.776-.37-.137-18.223-7.18-18.223-30.187 0-22.91 18.11-30.085 18.11-30.084z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <h4 class="font-bold">Json</h4>
+                </div>
+                <div class="skill-card glass-panel p-6 rounded-xl text-center transition-all duration-300">
+                    <div class="w-full flex justify-center mb-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="60" height="60">
+                            <path fill="#E44D26"
+                                d="M19.037 113.876L9.032 1.661h109.936l-10.016 112.198-45.019 12.48z" />
+                            <path fill="#F16529" d="M64 116.8l36.378-10.086 8.559-95.878H64z" />
+                            <path fill="#EBEBEB"
+                                d="M64 52.455H45.788L44.53 38.361H64V24.599H29.489l.33 3.692 3.382 37.927H64zm0 35.743l-.061.017-15.327-4.14-.979-10.975H33.816l1.928 21.609 28.193 7.826.063-.017z" />
+                            <path fill="#fff"
+                                d="M63.952 52.455v13.763h16.947l-1.597 17.849-15.35 4.143v14.319l28.215-7.82.207-2.325 3.234-36.233.335-3.696h-3.708zm0-27.856v13.762h33.244l.276-3.092.628-6.978.329-3.692z" />
+                        </svg>
+                    </div>
+                    <h4 class="font-bold">Html &amp; CSS</h4>
+                </div>
+                <div class="skill-card glass-panel p-6 rounded-xl text-center transition-all duration-300">
+                    <div class="w-full flex justify-center mb-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="60" height="60">
+                            <path
+                                d="M64.004 25.602c-17.067 0-27.73 8.53-32 25.597 6.398-8.531 13.867-11.73 22.398-9.597 4.871 1.214 8.352 4.746 12.207 8.66C72.883 56.629 80.145 64 96.004 64c17.066 0 27.73-8.531 32-25.602-6.399 8.536-13.867 11.735-22.399 9.602-4.87-1.215-8.347-4.746-12.207-8.66-6.27-6.367-13.53-13.738-29.394-13.738zM32.004 64c-17.066 0-27.73 8.531-32 25.602C6.402 81.066 13.87 77.867 22.402 80c4.871 1.215 8.352 4.746 12.207 8.66 6.274 6.367 13.536 13.738 29.395 13.738 17.066 0 27.73-8.53 32-25.597-6.399 8.531-13.867 11.73-22.399 9.597-4.87-1.214-8.347-4.746-12.207-8.66C55.128 71.371 47.868 64 32.004 64zm0 0"
+                                fill="#38bdf8" />
+                        </svg>
+                    </div>
+                    <h4 class="font-bold">Tailwind</h4>
+                </div>
+                <div class="skill-card glass-panel p-6 rounded-xl text-center transition-all duration-300">
+                    <div class="w-full flex justify-center mb-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="60" height="60">
+                            <path
+                                d="M93.809 92.112c.785-6.533.55-7.492 5.416-6.433l1.235.108c3.742.17 8.637-.602 11.513-1.938 6.191-2.873 9.861-7.668 3.758-6.409-13.924 2.873-14.881-1.842-14.881-1.842 14.703-21.815 20.849-49.508 15.543-56.287-14.47-18.489-39.517-9.746-39.936-9.52l-.134.025c-2.751-.571-5.83-.912-9.289-.968-6.301-.104-11.082 1.652-14.709 4.402 0 0-44.683-18.409-42.604 23.151.442 8.841 12.672 66.898 27.26 49.362 5.332-6.412 10.484-11.834 10.484-11.834 2.558 1.699 5.622 2.567 8.834 2.255l.249-.212c-.078.796-.044 1.575.099 2.497-3.757 4.199-2.653 4.936-10.166 6.482-7.602 1.566-3.136 4.355-.221 5.084 3.535.884 11.712 2.136 17.238-5.598l-.22.882c1.474 1.18 1.375 8.477 1.583 13.69.209 5.214.558 10.079 1.621 12.948 1.063 2.868 2.317 10.256 12.191 8.14 8.252-1.764 14.561-4.309 15.136-27.985" />
+                            <path
+                                d="M75.458 125.256c-4.367 0-7.211-1.689-8.938-3.32-2.607-2.46-3.641-5.629-4.259-7.522l-.267-.79c-1.244-3.358-1.666-8.193-1.916-14.419-.038-.935-.064-1.898-.093-2.919-.021-.747-.047-1.684-.085-2.664a18.8 18.8 0 01-4.962 1.568c-3.079.526-6.389.356-9.84-.507-2.435-.609-4.965-1.871-6.407-3.82-4.203 3.681-8.212 3.182-10.396 2.453-3.853-1.285-7.301-4.896-10.542-11.037-2.309-4.375-4.542-10.075-6.638-16.943-3.65-11.96-5.969-24.557-6.175-28.693C4.292 23.698 7.777 14.44 15.296 9.129 27.157.751 45.128 5.678 51.68 7.915c4.402-2.653 9.581-3.944 15.433-3.851 3.143.051 6.136.327 8.916.823 2.9-.912 8.628-2.221 15.185-2.139 12.081.144 22.092 4.852 28.949 13.615 4.894 6.252 2.474 19.381.597 26.651-2.642 10.226-7.271 21.102-12.957 30.57 1.544.011 3.781-.174 6.961-.831 6.274-1.295 8.109 2.069 8.607 3.575 1.995 6.042-6.677 10.608-9.382 11.864-3.466 1.609-9.117 2.589-13.745 2.377l-.202-.013-1.216-.107-.12 1.014-.116.991c-.311 11.999-2.025 19.598-5.552 24.619-3.697 5.264-8.835 6.739-13.361 7.709-1.544.33-2.947.474-4.219.474zm-9.19-43.671c2.819 2.256 3.066 6.501 3.287 14.434.028.99.054 1.927.089 2.802.106 2.65.355 8.855 1.327 11.477.137.371.26.747.39 1.146 1.083 3.316 1.626 4.979 6.309 3.978 3.931-.843 5.952-1.599 7.534-3.851 2.299-3.274 3.585-9.86 3.821-19.575l4.783.116-4.75-.57.14-1.186c.455-3.91.783-6.734 3.396-8.602 2.097-1.498 4.486-1.353 6.389-1.01-2.091-1.58-2.669-3.433-2.823-4.193l-.399-1.965 1.121-1.663c6.457-9.58 11.781-21.354 14.609-32.304 2.906-11.251 2.02-17.226 1.134-18.356-11.729-14.987-32.068-8.799-34.192-8.097l-.359.194-1.8.335-.922-.191c-2.542-.528-5.366-.82-8.393-.869-4.756-.08-8.593 1.044-11.739 3.431l-2.183 1.655-2.533-1.043c-5.412-2.213-21.308-6.662-29.696-.721-4.656 3.298-6.777 9.76-6.305 19.207.156 3.119 2.275 14.926 5.771 26.377 4.831 15.825 9.221 21.082 11.054 21.693.32.108 1.15-.537 1.976-1.529a270.708 270.708 0 0110.694-12.07l2.77-2.915 3.349 2.225c1.35.897 2.839 1.406 4.368 1.502l7.987-6.812-1.157 11.808c-.026.265-.039.626.065 1.296l.348 2.238-1.51 1.688-.174.196 4.388 2.025 1.836-2.301z" />
+                            <path fill="#336791"
+                                d="M115.731 77.44c-13.925 2.873-14.882-1.842-14.882-1.842 14.703-21.816 20.849-49.51 15.545-56.287C101.924.823 76.875 9.566 76.457 9.793l-.135.024c-2.751-.571-5.83-.911-9.291-.967-6.301-.103-11.08 1.652-14.707 4.402 0 0-44.684-18.408-42.606 23.151.442 8.842 12.672 66.899 27.26 49.363 5.332-6.412 10.483-11.834 10.483-11.834 2.559 1.699 5.622 2.567 8.833 2.255l.25-.212c-.078.796-.042 1.575.1 2.497-3.758 4.199-2.654 4.936-10.167 6.482-7.602 1.566-3.136 4.355-.22 5.084 3.534.884 11.712 2.136 17.237-5.598l-.221.882c1.473 1.18 2.507 7.672 2.334 13.557-.174 5.885-.29 9.926.871 13.082 1.16 3.156 2.316 10.256 12.192 8.14 8.252-1.768 12.528-6.351 13.124-13.995.422-5.435 1.377-4.631 1.438-9.49l.767-2.3c.884-7.367.14-9.743 5.225-8.638l1.235.108c3.742.17 8.639-.602 11.514-1.938 6.19-2.871 9.861-7.667 3.758-6.408z" />
+                            <path fill="#fff"
+                                d="M75.957 122.307c-8.232 0-10.84-6.519-11.907-9.185-1.562-3.907-1.899-19.069-1.551-31.503a1.59 1.59 0 011.64-1.55 1.594 1.594 0 011.55 1.639c-.401 14.341.168 27.337 1.324 30.229 1.804 4.509 4.54 8.453 12.275 6.796 7.343-1.575 10.093-4.359 11.318-11.46.94-5.449 2.799-20.951 3.028-24.01a1.593 1.593 0 011.71-1.472 1.597 1.597 0 011.472 1.71c-.239 3.185-2.089 18.657-3.065 24.315-1.446 8.387-5.185 12.191-13.794 14.037-1.463.313-2.792.453-4 .454zM31.321 90.466a6.71 6.71 0 01-2.116-.35c-5.347-1.784-10.44-10.492-15.138-25.885-3.576-11.717-5.842-23.947-6.041-27.922-.589-11.784 2.445-20.121 9.02-24.778 13.007-9.216 34.888-.44 35.813-.062a1.596 1.596 0 01-1.207 2.955c-.211-.086-21.193-8.492-32.768-.285-5.622 3.986-8.203 11.392-7.672 22.011.167 3.349 2.284 15.285 5.906 27.149 4.194 13.742 8.967 22.413 13.096 23.79.648.216 2.62.873 5.439-2.517A245.272 245.272 0 0145.88 73.046a1.596 1.596 0 012.304 2.208c-.048.05-4.847 5.067-10.077 11.359-2.477 2.979-4.851 3.853-6.786 3.853zm69.429-13.445a1.596 1.596 0 01-1.322-2.487c14.863-22.055 20.08-48.704 15.612-54.414-5.624-7.186-13.565-10.939-23.604-11.156-7.433-.16-13.341 1.738-14.307 2.069l-.243.099c-.971.305-1.716-.227-1.997-.849a1.6 1.6 0 01.631-2.025c.046-.027.192-.089.429-.176l-.021.006.021-.007c1.641-.601 7.639-2.4 15.068-2.315 11.108.118 20.284 4.401 26.534 12.388 2.957 3.779 2.964 12.485.019 23.887-3.002 11.625-8.651 24.118-15.497 34.277-.306.457-.81.703-1.323.703zm.76 10.21c-2.538 0-4.813-.358-6.175-1.174-1.4-.839-1.667-1.979-1.702-2.584-.382-6.71 3.32-7.878 5.208-8.411-.263-.398-.637-.866-1.024-1.349-1.101-1.376-2.609-3.26-3.771-6.078-.182-.44-.752-1.463-1.412-2.648-3.579-6.418-11.026-19.773-6.242-26.612 2.214-3.165 6.623-4.411 13.119-3.716C97.6 28.837 88.5 10.625 66.907 10.271c-6.494-.108-11.82 1.889-15.822 5.93-8.96 9.049-8.636 25.422-8.631 25.586a1.595 1.595 0 11-3.19.084c-.02-.727-.354-17.909 9.554-27.916C53.455 9.272 59.559 6.96 66.96 7.081c13.814.227 22.706 7.25 27.732 13.101 5.479 6.377 8.165 13.411 8.386 15.759.165 1.746-1.088 2.095-1.341 2.147l-.576.013c-6.375-1.021-10.465-.312-12.156 2.104-3.639 5.201 3.406 17.834 6.414 23.229.768 1.376 1.322 2.371 1.576 2.985.988 2.396 2.277 4.006 3.312 5.3.911 1.138 1.7 2.125 1.982 3.283.131.23 1.99 2.98 13.021.703 2.765-.57 4.423-.083 4.93 1.45.997 3.015-4.597 6.532-7.694 7.97-2.775 1.29-7.204 2.106-11.036 2.106zm-4.696-4.021c.35.353 2.101.962 5.727.806 3.224-.138 6.624-.839 8.664-1.786 2.609-1.212 4.351-2.567 5.253-3.492l-.5.092c-7.053 1.456-12.042 1.262-14.828-.577a6.162 6.162 0 01-.54-.401c-.302.119-.581.197-.78.253-1.58.443-3.214.902-2.996 5.105zm-45.562 8.915c-1.752 0-3.596-.239-5.479-.71-1.951-.488-5.24-1.957-5.19-4.37.057-2.707 3.994-3.519 5.476-3.824 5.354-1.103 5.703-1.545 7.376-3.67.488-.619 1.095-1.39 1.923-2.314 1.229-1.376 2.572-2.073 3.992-2.073.989 0 1.8.335 2.336.558 1.708.708 3.133 2.42 3.719 4.467.529 1.847.276 3.625-.71 5.006-3.237 4.533-7.886 6.93-13.443 6.93zm-7.222-4.943c.481.372 1.445.869 2.518 1.137 1.631.408 3.213.615 4.705.615 4.546 0 8.196-1.882 10.847-5.594.553-.774.387-1.757.239-2.274-.31-1.083-1.08-2.068-1.873-2.397-.43-.178-.787-.314-1.115-.314-.176 0-.712 0-1.614 1.009a41.146 41.146 0 00-1.794 2.162c-2.084 2.646-3.039 3.544-9.239 4.821-1.513.31-2.289.626-2.674.835zm12.269-7.36a1.596 1.596 0 01-1.575-1.354 8.218 8.218 0 01-.08-.799c-4.064-.076-7.985-1.82-10.962-4.926-3.764-3.927-5.477-9.368-4.699-14.927.845-6.037.529-11.366.359-14.229-.047-.796-.081-1.371-.079-1.769.003-.505.013-1.844 4.489-4.113 1.592-.807 4.784-2.215 8.271-2.576 5.777-.597 9.585 1.976 10.725 7.246 3.077 14.228.244 20.521-1.825 25.117-.385.856-.749 1.664-1.04 2.447l-.257.69c-1.093 2.931-2.038 5.463-1.748 7.354a1.595 1.595 0 01-1.335 1.819l-.244.02zM42.464 42.26l.062 1.139c.176 2.974.504 8.508-.384 14.86-.641 4.585.759 9.06 3.843 12.276 2.437 2.542 5.644 3.945 8.94 3.945h.068c.369-1.555.982-3.197 1.642-4.966l.255-.686c.329-.884.714-1.74 1.122-2.646 1.991-4.424 4.47-9.931 1.615-23.132-.565-2.615-1.936-4.128-4.189-4.627-4.628-1.022-11.525 2.459-12.974 3.837zm9.63-.677c-.08.564 1.033 2.07 2.485 2.271 1.449.203 2.689-.975 2.768-1.539.079-.564-1.033-1.186-2.485-1.388-1.451-.202-2.691.092-2.768.656zm2.818 2.826l-.407-.028c-.9-.125-1.81-.692-2.433-1.518-.219-.29-.576-.852-.505-1.354.101-.736.999-1.177 2.4-1.177.313 0 .639.023.967.069.766.106 1.477.327 2.002.62.91.508.977 1.075.936 1.368-.112.813-1.405 2.02-2.96 2.02zm-2.289-2.732c.045.348.907 1.496 2.029 1.651l.261.018c1.036 0 1.81-.815 1.901-1.082-.096-.182-.762-.634-2.025-.81a5.823 5.823 0 00-.821-.059c-.812 0-1.243.183-1.345.282zm43.605-1.245c.079.564-1.033 2.07-2.484 2.272-1.45.202-2.691-.975-2.771-1.539-.076-.564 1.036-1.187 2.486-1.388 1.45-.203 2.689.092 2.769.655zm-2.819 2.56c-1.396 0-2.601-1.086-2.7-1.791-.115-.846 1.278-1.489 2.712-1.688.316-.044.629-.066.93-.066 1.238 0 2.058.363 2.14.949.053.379-.238.964-.739 1.492-.331.347-1.026.948-1.973 1.079l-.37.025zm.943-3.013c-.276 0-.564.021-.856.061-1.441.201-2.301.779-2.259 1.089.048.341.968 1.332 2.173 1.332l.297-.021c.787-.109 1.378-.623 1.66-.919.443-.465.619-.903.598-1.052-.028-.198-.56-.49-1.613-.49zm3.965 32.843a1.594 1.594 0 01-1.324-2.483c3.398-5.075 2.776-10.25 2.175-15.255-.257-2.132-.521-4.337-.453-6.453.07-2.177.347-3.973.614-5.71.317-2.058.617-4.002.493-6.31a1.595 1.595 0 113.186-.172c.142 2.638-.197 4.838-.525 6.967-.253 1.643-.515 3.342-.578 5.327-.061 1.874.178 3.864.431 5.97.64 5.322 1.365 11.354-2.691 17.411a1.596 1.596 0 01-1.328.708z" />
+                        </svg>
+                    </div>
+                    <h4 class="font-bold">PostgreSQL</h4>
+                </div>
+            </div>
+            <!-- Secondary Tools -->
+            <h3 class="text-xl font-tech text-white mb-6 border-b border-gray-700 pb-2">Secondary / Learning</h3>
+            <div class="flex flex-wrap gap-3">
+                <span
+                    class="px-4 py-2 bg-gray-800 rounded-full text-xl text-gray-300 border border-gray-700">Laravel</span>
+                <span
+                    class="px-4 py-2 bg-gray-800 rounded-full text-xl text-gray-300 border border-gray-700">Inertia</span>
+                <span
+                    class="px-4 py-2 bg-gray-800 rounded-full text-xl text-gray-300 border border-gray-700">JS/TS</span>
+                <span
+                    class="px-4 py-2 bg-gray-800 rounded-full text-xl text-gray-300 border border-gray-700">Node.js</span>
+                <span
+                    class="px-4 py-2 bg-gray-800 rounded-full text-xl text-gray-300 border border-gray-700">Vue.js</span>
+                <span
+                    class="px-4 py-2 bg-gray-800 rounded-full text-xl text-gray-300 border border-gray-700">Quaser.js</span>
+                <span
+                    class="px-4 py-2 bg-gray-800 rounded-full text-xl text-gray-300 border border-gray-700">ShadcnUI</span>
+                <span
+                    class="px-4 py-2 bg-gray-800 rounded-full text-xl text-gray-300 border border-gray-700">Figma</span>
+                <span 
+                    class="px-4 py-2 bg-gray-800 rounded-full text-xl text-gray-300 border border-gray-700">PyTorch (Learning)</span>
             </div>
         </div>
     </section>
 
-    <!-- PROJECTS SECTION -->
-    <section class="container" id="projects">
-        <h2 class="section-title"><i class="fas fa-laptop-code"></i> Projects</h2>
-        <div class="project-grid">
-            
-            <div class="project-card">
-                <div>
-                    <div class="project-header">
-                        <div class="project-title">ProgressivePy</div>
-                    </div>
-                    <p class="project-desc">A custom library to create progress bars efficiently in both terminal and Jupyter environments.</p>
+    <!-- Services -->
+    <section class="py-16 bg-gradient-to-r from-blue-900/20 to-purple-900/20">
+        <div class="max-w-9xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-tech mb-8">Services</h2>
+            <div class="flex flex-wrap justify-center gap-8">
+                <div
+                    class="p-6 bg-cosmic-card border border-neon-blue rounded-xl w-full md:w-1/4 hover:scale-105 transition-transform">
+                    <i class="fab fa-python text-5xl text-neon-blue mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Python Development</h3>
+                    <p class="text-gray-400">Automation, Scripting, and complex Logic implementation.</p>
                 </div>
-                <div class="project-footer">
-                    <span style="color: var(--neon-green); font-size: 0.8rem;">Python Pkg</span>
-                    <a href="https://github.com/Ansari-Codes/progressive_py" target="_blank" class="project-link">GitHub <i class="fas fa-arrow-right"></i></a>
+                <div
+                    class="p-6 bg-cosmic-card border border-neon-purple rounded-xl w-full md:w-1/4 hover:scale-105 transition-transform">
+                    <i class="fas fa-globe text-5xl text-neon-purple mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Web Development</h3>
+                    <p class="text-gray-400">FullStack web apps using Python frameworks (FastAPI, Flask, NiceGUI).
+                    </p>
                 </div>
-            </div>
-
-            <div class="project-card">
-                <div>
-                    <div class="project-header">
-                        <div class="project-title">TurtleGraphics</div>
-                    </div>
-                    <p class="project-desc">A live web application to create and publish turtle drawings interactively.</p>
-                </div>
-                <div class="project-footer">
-                    <span style="color: var(--neon-green); font-size: 0.8rem;">Web App</span>
-                    <a href="https://github.com/Ansari-Codes/tg" target="_blank" class="project-link">Source <i class="fas fa-arrow-right"></i></a>
-                    <a href="https://kitaaab.org" target="_blank" class="project-link">View <i class="fas fa-arrow-right"></i></a>
+                <div
+                    class="p-6 bg-cosmic-card border border-neon-purple rounded-xl w-full md:w-1/4 hover:scale-105 transition-transform">
+                    <i class="fas fa-desktop text-5xl text-neon-purple mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">WindowsApp Development</h3>
+                    <p class="text-gray-400">Window's Executable apps in Python using Nicegui and Customtkiner.</p>
+                    </p>
                 </div>
             </div>
-
-            <div class="project-card">
-                <div>
-                    <div class="project-header">
-                        <div class="project-title">NiceStart</div>
-                    </div>
-                    <p class="project-desc">A robust boilerplate for NiceGUI projects to accelerate development setup.</p>
-                </div>
-                <div class="project-footer">
-                    <span style="color: var(--neon-green); font-size: 0.8rem;">Boilerplate</span>
-                    <a href="https://github.com/Ansari-Codes/NiceStart" target="_blank" class="project-link">GitHub <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div>
-                    <div class="project-header">
-                        <div class="project-title">FriendsChat</div>
-                    </div>
-                    <p class="project-desc">A Chat interface built to understand real-time communication protocols.</p>
-                </div>
-                <div class="project-footer">
-                    <span style="color: var(--neon-green); font-size: 0.8rem;">Chat App</span>
-                    <a href="https://github.com/Ansari-Codes/friends" target="_blank" class="project-link">GitHub <i class="fas fa-arrow-right"></i></a>
-                    <a href="https://kitaaab.net" target="_blank" class="project-link">View <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div>
-                    <div class="project-header">
-                        <div class="project-title">WorldOfAnsari</div>
-                    </div>
-                    <p class="project-desc">My primary personal website showcasing my broader work and journey.</p>
-                </div>
-                <div class="project-footer">
-                    <span style="color: var(--neon-blue); font-size: 0.8rem;">Portfolio</span>
-                    <a href="https://worldofansari.com/" target="_blank" class="project-link">Visit <i class="fas fa-external-link-alt"></i></a>
-                </div>
-            </div>
-
-             <div class="project-card">
-                <div>
-                    <div class="project-header">
-                        <div class="project-title">AnsariCodes</div>
-                    </div>
-                    <p class="project-desc">My centralized coding portfolio hub.</p>
-                </div>
-                <div class="project-footer">
-                    <span style="color: var(--neon-blue); font-size: 0.8rem;">Portfolio</span>
-                    <a href="https://ansaricodes.com/" target="_blank" class="project-link">Visit <i class="fas fa-external-link-alt"></i></a>
-                </div>
-            </div>
-
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer>
-        <div class="container">
-            <h2 style="color: #fff; margin-bottom: 10px;">Lets Connect</h2>
-            <p style="color: var(--text-muted); font-size: 0.9rem;">
-                +92 336 0044774 &nbsp;|&nbsp; ansaricodes@gmail.com
-            </p>
-            
-            <div class="social-links">
-                <a href="https://www.linkedin.com/in/ansari-codes/" target="_blank" class="social-btn" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://github.com/Ansari-Codes" target="_blank" class="social-btn" title="GitHub"><i class="fab fa-github"></i></a>
-                <a href="https://www.kaggle.com/mabubakrsiddiq" target="_blank" class="social-btn" title="Kaggle"><i class="fab fa-kaggle"></i></a>
-                <a href="https://www.youtube.com/@ansaricode" target="_blank" class="social-btn" title="YouTube"><i class="fab fa-youtube"></i></a>
-                <a href="https://www.instagram.com/ansaricodes/" target="_blank" class="social-btn" title="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://web.facebook.com/ansaricodes/" target="_blank" class="social-btn" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+    <!-- Projects Section -->
+    <section id="projects" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-tech font-bold text-white mb-4">Innovations & <span
+                        class="text-neon-purple">Projects</span></h2>
             </div>
-            
-            <p class="copyright">&copy; 2024 Muhammad Abubakar Siddique Ansari. All rights reserved.</p>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- AnsariCodes -->
+                <div class="project-card glass-panel rounded-xl overflow-hidden group">
+                    <div class="h-48 bg-gray-800 flex items-center justify-center p-4">
+                        <img src="https://ansaricodes.com/wp-content/uploads/2024/12/logo.png" alt="AnsariCodes"
+                            class="max-h-32 object-contain group-hover:scale-110 transition-transform">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">AnsariCodes</h3>
+                        <p class="text-gray-400 text-sm mb-4">Portfolio site and tech blog built with WordPress.</p>
+                        <a href="https://ansaricodes.com" target="_blank"
+                            class="text-neon-blue hover:text-white font-bold text-sm">Visit Site <i
+                                class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+
+                <!-- TurtleGraphics -->
+                <div class="project-card glass-panel rounded-xl overflow-hidden group">
+                    <div class="h-48 bg-green-900/20 flex items-center justify-center text-7xl">
+                        🐢
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">TurtleGraphics</h3>
+                        <p class="text-gray-400 text-sm mb-4">Turtle drawing creation using Python web app.</p>
+                        <a href="https://kitaaab.org/" target="_blank"
+                            class="text-neon-blue hover:text-white font-bold text-sm">Visit Site <i
+                                class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+
+                <!-- NiceStart -->
+                <div class="project-card glass-panel rounded-xl overflow-hidden group">
+                    <div class="h-48 bg-blue-900/20 flex items-center justify-center text-7xl">
+                        👌
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">NiceStart</h3>
+                        <p class="text-gray-400 text-sm mb-4">A starter kit for NiceGUI projects to jumpstart
+                            development.</p>
+                        <a href="https://github.com/Ansari-Codes/NiceStart" target="_blank"
+                            class="text-neon-blue hover:text-white font-bold text-sm">View Code <i
+                                class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+
+                <!-- ProgressivePy -->
+                <div class="project-card glass-panel rounded-xl overflow-hidden group">
+                    <div class="h-48 bg-purple-900/20 flex items-center justify-center">
+                        <!-- Using object tag for fallback if image missing -->
+                        <img src="ProgressivePy.png"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"
+                            alt="ProgressivePy" class="max-h-32 object-contain">
+                        <div class="hidden text-6xl text-white"><i class="fas fa-tasks"></i></div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">ProgressivePy</h3>
+                        <p class="text-gray-400 text-sm mb-4">Library to create progress bars interactively in terminal
+                            & notebook envs.</p>
+                        <a href="https://github.com/Ansari-Codes/progressive_py" target="_blank"
+                            class="text-neon-blue hover:text-white font-bold text-sm">View Library <i
+                                class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+
+                <!-- WorldOfAnsari -->
+                <div class="project-card glass-panel rounded-xl overflow-hidden group">
+                    <div class="h-48 bg-gray-700 flex items-center justify-center text-7xl text-blue-200">
+                        <i class="fab fa-wordpress"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">WorldOfAnsari</h3>
+                        <p class="text-gray-400 text-sm mb-4">Primary portfolio and world showcase.</p>
+                        <a href="http://worldofansari.com" target="_blank"
+                            class="text-neon-blue hover:text-white font-bold text-sm">Visit Site <i
+                                class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+
+            </div>
         </div>
+    </section>
+
+    <!-- Interests -->
+    <section class="py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h2 class="text-2xl font-tech text-gray-300 mb-6">Scientific Interests</h2>
+            <div class="flex flex-wrap justify-center gap-6 text-gray-500">
+                <span 
+                    class="flex items-center text-3xl"><i class="fas fa-atom mr-2 text-neon-blue"></i> Quantum Physics</span>
+                <span 
+                    class="flex items-center text-3xl"><i class="fas fa-globe mr-2 text-neon-purple"></i> Cosmology</span>
+                <span 
+                    class="flex items-center text-3xl"><i class="fas fa-square-root-alt mr-2 text-green-400"></i>
+                    Mathematics</span>
+                <span 
+                    class="flex items-center text-3xl"><i class="fas fa-project-diagram mr-2 text-yellow-400"></i> G.U.T /
+                    T.O.E</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-black/50 relative">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div
+                class="glass-panel rounded-2xl p-8 md:p-12 border border-neon-blue/30 shadow-[0_0_30px_rgba(0,243,255,0.1)]">
+                <h2 class="text-4xl font-tech font-bold text-white text-center mb-8">Initiate <span
+                        class="text-neon-blue">Connection</span></h2>
+
+                <div class="grid md:grid-cols-2 gap-12">
+
+                    <!-- Contact Info -->
+                    <div class="space-y-6">
+                        <p class="text-gray-300">Based in Bahawalnagar, Punjab, Pakistan.</p>
+
+                        <div class="flex items-center space-x-4">
+                            <div
+                                class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-neon-blue">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <span class="text-white">+92 336 0044774</span>
+                        </div>
+
+                        <div class="flex items-center space-x-4">
+                            <div
+                                class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-neon-blue">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <span class="text-white">ansaricodes@gmail.com</span>
+                        </div>
+
+                        <!-- Social Links Grid -->
+                        <div class="pt-6">
+                            <h4 class="text-sm uppercase tracking-widest text-gray-500 mb-4">Social Frequency</h4>
+                            <div class="flex flex-wrap gap-3">
+                                <a href="https://www.linkedin.com/in/ansari-codes/"
+                                    class="w-10 h-10 rounded-full bg-blue-700 text-white flex items-center justify-center hover:scale-110 transition"><i
+                                        class="fab fa-linkedin-in"></i></a>
+                                <a href="https://github.com/Ansari-Codes"
+                                    class="w-10 h-10 rounded-full bg-gray-700 text-white flex items-center justify-center hover:scale-110 transition"><i
+                                        class="fab fa-github"></i></a>
+                                <a href="https://www.kaggle.com/mabubakrsiddiq"
+                                    class="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center hover:scale-110 transition"><i
+                                        class="fab fa-kaggle"></i></a>
+                                <a href="https://www.youtube.com/@ansaricode"
+                                    class="w-10 h-10 rounded-full bg-red-600 text-white flex items-center justify-center hover:scale-110 transition"><i
+                                        class="fab fa-youtube"></i></a>
+                                <a href="https://www.instagram.com/ansaricodes/"
+                                    class="w-10 h-10 rounded-full bg-pink-600 text-white flex items-center justify-center hover:scale-110 transition"><i
+                                        class="fab fa-instagram"></i></a>
+                                <a href="https://x.com/ansaricodes"
+                                    class="w-10 h-10 rounded-full bg-black border border-gray-600 text-white flex items-center justify-center hover:scale-110 transition"><i
+                                        class="fab fa-x-twitter"></i></a>
+                                <a href="https://medium.com/@ansaricodes"
+                                    class="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center hover:scale-110 transition"><i
+                                        class="fab fa-medium-m"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <form action="https://formspree.io/f/mojazqpq" method="post" class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-1">Email</label>
+                            <input type="email" name="mail"
+                            required
+                                class="w-full bg-black/40 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-neon-blue transition">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-1">Message</label>
+                            <textarea name="message" rows="4"
+                            required
+                                class="w-full bg-black/40 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-neon-blue transition"></textarea>
+                        </div>
+                        <button type="submit"
+                            class="w-full bg-gradient-to-r from-neon-blue to-blue-600 text-black font-bold py-3 rounded-lg hover:shadow-[0_0_20px_rgba(0,243,255,0.4)] transition-all transform hover:-translate-y-1">
+                            Send Message
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-6 text-center border-t border-gray-800 bg-black">
+        <p class="text-gray-500 text-sm">© 2025 Ansari Codes. Built with concepts & logic.</p>
     </footer>
 
-    <!-- JAVASCRIPT FOR TYPING EFFECT -->
-    <script>
-        const text = "Python Developer | Physics Enthusiast | Innovator";
-        const typeWriterElement = document.getElementById('typewriter');
-        let index = 0;
-
-        function type() {
-            if (index < text.length) {
-                typeWriterElement.textContent += text.charAt(index);
-                index++;
-                setTimeout(type, 100);
-            } else {
-                // Remove the cursor blinking animation after typing is done
-                typeWriterElement.style.borderRight = "none";
-            }
-        }
-
-        // Start typing on load
-        window.addEventListener('load', type);
-
-        // Simple smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
 </body>
+
 </html>
